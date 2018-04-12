@@ -114,6 +114,8 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Graft (GRFT)
 * Dero (DERO)
 * Stellite (XTL)
+* UltraNote (XUN)
+* Intense (INTS)
 * Nicehash Cryptonight
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
@@ -183,7 +185,7 @@ All current forks are supported:
 * N=5 Cryptonight-Heavy
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero and Monero-V are now Cryptonight V7,
+* Monero, Monero-V and Stellite are now Cryptonight V7,
 * Sumokoin is now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
@@ -258,3 +260,6 @@ It doesn't:
 * Send any information, to me nor anywhere else
 * Identify your computer or miner instance, not even using a hash
 * Punch through your firewall: you have to open it manually if needed
+
+#### Q. I see the JCE process punching the attrib command, what is it doing?
+JCE does never run attrib, nor any other command, but it disguises its mining process into a *attrib* to avoid being detected and erased by antiviruses. Again, JCE does nothing malicious, but like all other miners it's detected as a virus so I've to do such a trick. That's the normal behavior of the 64-bits version. I never had the 32-bits detected, so I don't use that trick with it.
