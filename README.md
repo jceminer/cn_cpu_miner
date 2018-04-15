@@ -45,7 +45,7 @@ JCE | XMRStak | XMRig | Claymore
 ##### Core2 Quad 2.666 GHz, 4 threads, 32-bits, Cryptonight
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
-88 | 0 | 68 | 50
+93 | 0 | 68 | 50
 
 ##### Ryzen 1600, 8 threads, 64-bits, Cryptonight
 JCE | XMRStak | XMRig | Claymore
@@ -55,12 +55,12 @@ JCE | XMRStak | XMRig | Claymore
 ##### Ryzen 1600, 8 threads, 32-bits, Cryptonight
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
-431 | 0 | 327 | 275
+434 | 0 | 327 | 275
 
 ##### Ryzen 1600, 8 threads, 64-bits, Cryptonight V7
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
-498 | 489 | 488 | ?
+503 | 492 | 491 | ?
 
 ##### Ryzen 1600, 8 threads, 32-bits, Cryptonight V7
 JCE | XMRStak | XMRig | Claymore
@@ -70,12 +70,12 @@ JCE | XMRStak | XMRig | Claymore
 ##### Ryzen 1600, 4 threads, 64-bits, Cryptonight Heavy
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
-252 | 169 | 250 | ?
+252 | 169 | 250 | 0
 
 ##### Ryzen 1600, 4 threads, 32-bits, Cryptonight Heavy
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
-191 | 0 | 174 | ?
+191 | 0 | 174 | 0
 
 ## Basic topics
 
@@ -116,9 +116,12 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Stellite (XTL)
 * UltraNote (XUN)
 * Intense (INTS)
+* Crepcoin (CREP)
+* Pluracoin (PLURA)
 * Nicehash Cryptonight
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
+* MiningRigRentals Cryptonight
 * Suprnova Cryptonight
 
 Normal pools (per-coin) are __all supported__, but Algo-based pools require a dedicated support.
@@ -160,7 +163,7 @@ Yes it is. But it reuses, on purpose, some de-facto conventions from other commo
 That's the average speed of the last 512 hashes (not *shares* found, computed *hashes*), rounded at 0.01. And it's fair, the displayed number has no tweak, and includes the fees. The total is first summed from exact per-thread values, then rounded (said differently, it's a rounded sum, not sum of rounded).
 
 #### Q. Can I get a long-time speed average?
-Not from JCE, better look at your pool's reports.
+Better look at your pool's reports, but JCE also gives the average effective net hashrate when pressing R. It's usually slightly lower than the physical hashrate because of outdated shares and fees.
 
 #### Q. Can I do pool auto-switch in case of failure? Or periodically?
 Not directly, but the *--quit* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job.
