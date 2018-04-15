@@ -82,6 +82,7 @@ JCE | XMRStak | XMRig | Claymore
 #### Q. Is it free (as in beer, as in freedom)?
 No and no. It has fees, and is not open source. But the program itself is free to distribute.
 
+
 #### Q. How much cost the fees?
 Current fees are:
 * 3.0% when using at least one mining thread with non-AES architecture, or 32-bits
@@ -118,6 +119,11 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Intense (INTS)
 * Crepcoin (CREP)
 * Pluracoin (PLURA)
+* Haven (XHV)
+* FreelaBit (FBF)
+* BlueberriesCoin (BBC)
+* B2BCoin (B2B)
+* Bitsum (BSM)
 * Nicehash Cryptonight
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
@@ -189,7 +195,7 @@ All current forks are supported:
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V and Stellite are now Cryptonight V7,
-* Sumokoin is now Cryptonight-Heavy,
+* Sumokoin and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
 * Everything else is still assumed Cryptonight
