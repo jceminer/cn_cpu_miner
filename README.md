@@ -83,6 +83,7 @@ JCE | XMRStak | XMRig | Claymore
 No and no. It has fees, and is not open source. But the program itself is free to distribute.
 
 
+
 #### Q. How much cost the fees?
 Current fees are:
 * 3.0% when using at least one mining thread with non-AES architecture, or 32-bits
@@ -124,10 +125,11 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * BlueberriesCoin (BBC)
 * B2BCoin (B2B)
 * Bitsum (BSM)
-* Nicehash Cryptonight
+* Interplanetary Broadcast Coin (IPBC)
+* Nicehash Cryptonight v7
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
-* MiningRigRentals Cryptonight
+* MiningRigRentals Cryptonight v7
 * Suprnova Cryptonight
 
 Normal pools (per-coin) are __all supported__, but Algo-based pools require a dedicated support.
