@@ -1,3 +1,5 @@
+## Note: bad shares reported with 0.21+, investigating regression. Better use 0.20 for now.
+
 # JCE Cryptonote CPU Miner
 Welcome to the Fastest Cryptonote CPU Miner ever!
 
