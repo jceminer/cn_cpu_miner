@@ -1,5 +1,3 @@
-## Note: bad shares reported with 0.21+, investigating regression. Better use 0.20 for now.
-
 # JCE Cryptonote CPU Miner
 Welcome to the Fastest Cryptonote CPU Miner ever!
 
@@ -127,7 +125,9 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * BlueberriesCoin (BBC)
 * B2BCoin (B2B)
 * Bitsum (BSM)
-* Interplanetary Broadcast Coin (IPBC)
+* Masari (MSR)
+* SuperiorCoin (SUP)
+* EDollar (EDL)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
