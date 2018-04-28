@@ -2,7 +2,7 @@
 Welcome to the Fastest Cryptonote CPU Miner ever!
 
 ### Is that a Virus? No!
-Like all miners, JCE gets detected as a virus by most Antiviruses, including Windows Defender. But it's not. Read more about Privacy and Security below.
+Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, including Windows Defender. But it's not. Read more about Privacy and Security below.
 
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
@@ -17,16 +17,17 @@ The *--variation* parameter let you choose the fork. More details below.
 * [Advanced topics](#advanced-topics)
 * [Cryptonight Forks](#cryptonight-forks)
 * [Configuration](#configuration)
-* [Huge Pages](#huge-pages)
+* [Large Pages](#large-pages)
 * [Privacy and Security](#privacy-and-security)
 
 ## Speed
 
 In short, JCE is:
 * Crazy fast on non-AES 64-bits, usually 35-40% faster than other miners
-* Still a lot faster on non-AES 32-bits, usually beating even the other miners 64-bits versions
-* Barely faster than the other best on AES 64-bits, beating them by ~1%, +2% on V7 fork
-* A lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
+* Still faster on non-AES 32-bits, usually beating even the other miners 64-bits versions
+* And still faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
+* Barely faster than the other best on AES 64-bits, beating them by ~1%, +2.8% on V7 fork
+* Also a lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
 
 Here's a benchmark against three other common miners.\
 **The test is fair**: run on the exact same Win10 Pro computer, all Huge Pages enabled, no background task, best configuration.
@@ -94,10 +95,12 @@ Not really. I plan to offer a paying per-licence-no-fee (pay-once-for-all) versi
 Also, JCE never takes any fee during the first minute, so if you run it, and kill it after one minute, and repeat again and again, then you'll never pay any fee, but JCE takes a few seconds to start, and your Pool probably won't let your reconnect continuously.
 
 #### Q. Will it work on my computer?
-Minimum is Windows 7 32-bits, with a SSE2 capable CPU. 64-bits is faster, prefer it.\
+Minimum is Windows Vista 32-bits, with a SSE2 capable CPU. 64-bits is faster, prefer it.\
 For best performance, Huge Pages must be enabled, JCE will try to auto-configure them, but it may work or not depending on your Windows version and security configuration.
 
 #### Q. What currency can I mine? On which pools?
+You can mine any coin on any pool.\
+If your coin is listed, all is automatic.\
 Run the miner with *--coins* parameter to get the up-to-date list. Current list is:
 * Monero (XMR)
 * Monero-V (XMV)
@@ -123,23 +126,40 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * BlueberriesCoin (BBC)
 * B2BCoin (B2B)
 * Bitsum (BSM)
-* Masari (MSR)
 * SuperiorCoin (SUP)
 * EDollar (EDL)
 * Interplanetary Broadcast (IPBC)
+* Masari (MSR)
+* Alloy (XAO)
+* BBSCoin (BBS)
+* BitcoiNote (BTCN)
+* Elya (ELYA)
+* Iridium (IRD)
+* Italo (ITA)
+* Lines (LNS)
+* Niobio (NBR)
+* Ombre (OMB)
+* Solace (SOL)
+* Triton (TRIT)
+* Truckcoin (TRKC)
+* Qwertycoin (QWC)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
 * MiningRigRentals Cryptonight v7
 * Suprnova Cryptonight
 
-Normal pools (per-coin) are __all supported__, but Algo-based pools require a dedicated support.
+Otherwise, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
+The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
 
 #### Q. Is Nicehash supported?
 Yes, see list above. The Nicehash-specific Nonce is then automatically enabled.
 
 #### Q. Is SSL supported?
 Yes, with parameter *--ssl*
+
+#### Q. I get only bad shares, what happens?
+Your coin has probably forked. Add --variation N parameter, with N as listed below, until you find the one that works.
 
 #### Q. Is there a HTTP server to monitor the miner?
 No, modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job.
@@ -153,8 +173,14 @@ No. JCE is just a big standalone .exe
 #### Q. Is there a Linux version?
 Not yet.
 
+#### Q. Is there a GPU version?
+Not yet.
+
 #### Q. Is there a 32-bits version?
 Yes, both 32 and 64 are always in the same release.
+
+#### Q. Is low-power mode supported?
+That's how other miners call the multi-hash mode. I call it multi-hash because it's about computing several hashes at the same time, barely related to cpu voltage. And yes it's now supported, with max multi 2. It will be increased to 5 or 6 in next versions.
 
 #### Q. Do I get a discount on fees if I use SSL?
 I'm not Claymore.
@@ -199,6 +225,7 @@ All current forks are supported:
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V and Stellite are now Cryptonight V7,
+* SuperiorCoin, BBSCoin and Lines are V7 too,
 * Sumokoin and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
@@ -245,7 +272,7 @@ See the config.example.txt file in the Zip for details.
 ### Dual-thread mining
 
 This is an exclusive feature of JCE!\
-It is **not** like the double-hash found on Stak, with one thread on two hashes. That's two threads on two hashes, but sharing the cache and the Huge Page, for CPUs with very low cache.\
+It is **not** like the double-hash, with one thread on two hashes. That's two threads on two hashes, but sharing the cache and the Huge Page, for CPUs with very low cache.\
 The principle is closer to Claymore Dual: use the *smooth* parts of the Cryptonight algo to let another thread use the cache and memory, then take it back. It allows the main thread to run at ~90% and the side thread at ~25%, totaling a speed increase of ~15%.\
 However, if this mode is powerful, it offers a gain only on some rare, old CPU:
 * With no hardware AES (hardware AES is so fast that the master thread has no *time* to share)
@@ -254,7 +281,13 @@ However, if this mode is powerful, it offers a gain only on some rare, old CPU:
 
 Remains some entry-level Core2, Athlons and Celeron/Pentium.
 
-## Huge Pages
+### Multi-hash
+
+To be explained...
+
+## Large Pages
+
+To be explained...
 
 ## Privacy and Security
 
