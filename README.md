@@ -1,13 +1,15 @@
 # JCE Cryptonote CPU Miner
 Welcome to the Fastest Cryptonote CPU Miner ever!
 
+BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
+
 ### Is that a Virus? No!
 Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, including Windows Defender. But it's not. Read more about Privacy and Security below.
 
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V, Cryptolight-V7 and Cryptonight-Heavy forks supported? Yes!
+### Are the new Monero-V, Cryptolight-V7, Cryptonight-Heavy, IPBC and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -24,9 +26,9 @@ The *--variation* parameter let you choose the fork. More details below.
 
 In short, JCE is:
 * Crazy fast on non-AES 64-bits, usually 35-40% faster than other miners
-* Still faster on non-AES 32-bits, usually beating even the other miners 64-bits versions
-* And still faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
-* Barely faster than the other best on AES 64-bits, beating them by ~1%, +2.8% on V7 fork
+* Compared to other 32-bits miners, still faster on non-AES 32-bits, sometimes beating even the other miners 64-bits versions
+* And still comparatively faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
+* Barely faster than the other best on AES 64-bits, beating them by ~1%, +2.8% on V7 fork, +4% on Cryptonight-Heavy
 * Also a lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
 
 Here's a benchmark against three other common miners.\
@@ -143,13 +145,15 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Triton (TRIT)
 * Truckcoin (TRKC)
 * Qwertycoin (QWC)
+* Loki (LOK)
+* Gadcoin (GAD)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
 * MiningRigRentals Cryptonight v7
 * Suprnova Cryptonight
 
-Otherwise, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
+Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
 The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
 
 #### Q. Is Nicehash supported?
@@ -161,8 +165,11 @@ Yes, with parameter *--ssl*
 #### Q. I get only bad shares, what happens?
 Your coin has probably forked. Add --variation N parameter, with N as listed below, until you find the one that works.
 
+#### Q. What if my wallet is not recognized, or as a different coin?
+Some coins use a wallet syntax so close that they're hard to differenciate, like Lines and Loki. If JCE fails to detect the coin, force it with *--any --variation N* (with N as listed below) and let the miner run. It will still display the wrong coin but mine the good one. And of course proof-check pool side that you correctly get the shares. 
+
 #### Q. Is there a HTTP server to monitor the miner?
-No, modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job.
+Not yet, modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job. A minimal server is planned to be added to ease integration of JCE into mining tools, but not intended for human reading. [Forager](http://bit.ly/2wagBKX) was the first tool to integrate JCE, take a look!
 
 
 ## Advanced topics
@@ -180,7 +187,7 @@ Not yet.
 Yes, both 32 and 64 are always in the same release.
 
 #### Q. Is low-power mode supported?
-That's how other miners call the multi-hash mode. I call it multi-hash because it's about computing several hashes at the same time, barely related to cpu voltage. And yes it's now supported, with max multi 2. It will be increased to 5 or 6 in next versions.
+That's how other miners call the multi-hash mode. I call it multi-hash because it's about computing several hashes at the same time, barely related to cpu voltage. And yes it's now supported, with max multi = 6.
 
 #### Q. Do I get a discount on fees if I use SSL?
 I'm not Claymore.
@@ -201,13 +208,19 @@ That's the average speed of the last 512 hashes (not *shares* found, computed *h
 Better look at your pool's reports, but JCE also gives the average effective net hashrate when pressing R. It's usually slightly lower than the physical hashrate because of outdated shares and fees.
 
 #### Q. Can I do pool auto-switch in case of failure? Or periodically?
-Not directly, but the *--quit* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job.
+Not directly, but the *-q* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job. The packaged .zip comes with an exemple, edit it to fit your needs.
 
 #### Q. Can I mix architectures when mining (i.e. thread 1 uses core2, thread 2 uses pentium4)?
 It sounds strange, but yes. However, that's mostly useful for tests.
 
-#### Q. I used "use_cache":false and it still has a strong negative impact on other threads
-The no-cache mode means the cache is instantly invalidated once used, not always entirely bypassed, depending on your hardware. And a mining thread always has an impact on TLB. So don't try to use extra mining threads playing with the no-cache mode, rather use the dual-thread mining, which is made for that precise purpose.
+#### Q. Can I mix coins when mining (i.e. thread 1 mines XMR, thread 2 mines ETN)?
+No.
+
+#### Q. Can I mix simple-hash and multi-hash?
+Yes, and it's a very common case when mining TurtleCoin or IPBC.
+
+#### Q. What is "use_cache":false useful for?
+The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. However mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance.
 
 #### Q. What a great job! Can I make a donation?
 Thanks bro. You can, with the *--donate* parameter which raise the fees to 80%, or by sending coins to the donation wallet (the one in the start.bat file included).
@@ -222,19 +235,21 @@ All current forks are supported:
 * N=4 Cryptolight V7 fork of April-2018
 * N=5 Cryptonight-Heavy
 * N=6 Cryptolight-IPBC
+* N=7 Cryptonight-XTL
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero, Monero-V and Stellite are now Cryptonight V7,
-* SuperiorCoin, BBSCoin and Lines are V7 too,
-* Sumokoin and Haven are now Cryptonight-Heavy,
+* Monero, Monero-V, Graft are now Cryptonight V7,
+* SuperiorCoin, BBSCoin and Lines are Cryptonight V7 too,
+* Sumokoin, Loki and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
 * Interplanetary Broadcast has is own Cryptolight-IPBC
+* Stellite has is own Cryptonight-XTL
 * Everything else is still assumed Cryptonight
 
-More will be updated once all coins have forked (~May-2018)
+More will be updated as more coins forks.
 
-To use the new forks right now, set the *--variation N* parameter, with N as stated above.
+To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
 ## Configuration
 
