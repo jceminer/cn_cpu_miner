@@ -104,8 +104,7 @@ For best performance, Huge Pages must be enabled, JCE will try to auto-configure
 You can mine any coin on any pool.\
 If your coin is listed, all is automatic.\
 Run the miner with *--coins* parameter to get the up-to-date list. Current list is:
-* Monero (XMR)
-* Monero-V (XMV)
+* Monero (XMR/XMV)
 * Electroneum (ETN)
 * Karbowanec (KRB)
 * Bytecoin (BCN)
@@ -197,6 +196,9 @@ The network and stratum handling is C++14, and the mining algos are assembly (to
 
 #### Q. Can I plug it to a stratum proxy?
 No, it must mine on a real pool on Internet.
+
+#### Q. My Internet connection is bad, can JCE always reconnect instead of giving up after 5 attempts?
+Yes, add parameter *--forever*
 
 #### Q. Is it really new? It looks familiar to me...
 Yes it is. But it reuses, on purpose, some de-facto conventions from other common miners, like a XMRStak-style cpu configuration, and the colors of Claymore (green=share, red=error, blue=hashrate, yellow=status).
