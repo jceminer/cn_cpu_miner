@@ -16,6 +16,7 @@ The *--variation* parameter let you choose the fork. More details below.
 
 * [Speed](#speed)
 * [Getting started](#getting-started)
+* [Third Party integration](#third-party-integration)
 * [Basic topics](#basic-topics)
 * [Advanced topics](#advanced-topics)
 * [Cryptonight Forks](#cryptonight-forks)
