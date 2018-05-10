@@ -383,12 +383,14 @@ It does:
 * Connect to pools on Internet to mine
 * Write the log, if asked to (parameter --log)
 * Try to autoconfigure the Huge Pages privileges if they're not working at first. That's the only *intrusive* action, but when it does it, it says so.
+* Start a local HTTP server to get monitored, if asked to (default: disabled)
 
 It doesn't:
 * Write anything to your computer, except its own log, when enabled (default is disabled)
 * Send any information, to me nor anywhere else
 * Identify your computer or miner instance, not even using a hash
 * Punch through your firewall: you have to open it manually if needed
+* Run any command, not even *attrib* (see below)
 
 #### Q. I see the JCE process punching the attrib command, what is it doing?
 JCE does never run attrib, nor any other command, but it disguises its mining process into a *attrib* to avoid being detected and erased by antiviruses. Again, JCE does nothing malicious, but like all other miners it's detected as a virus so I've to do such a trick. That's the normal behavior of the 64-bits version. I never had the 32-bits detected, so I don't use that trick with it.
