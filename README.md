@@ -15,6 +15,7 @@ The *--variation* parameter let you choose the fork. More details below.
 # Index
 
 * [Speed](#speed)
+* [Getting started](#getting-started)
 * [Basic topics](#basic-topics)
 * [Advanced topics](#advanced-topics)
 * [Cryptonight Forks](#cryptonight-forks)
@@ -79,6 +80,69 @@ JCE | XMRStak | XMRig | Claymore
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
 191 | 0 | 174 | 0
+
+## Getting started
+
+If you're new at mining Cryptonight, here's the simplest way:
+
+1. Choose the coin to mine, see the list below. The most common is Monero.
+2. Get a wallet, that's a ~95 character long identifier. If you don't have one yet, you can create it [here](https://cn-wallet-generator.hashvault.pro/monero-wallet-generator.html)
+3. Choose a pool to mine on, and its port. For example Pool *pool.minexmr.com* and port *4444*
+4. Edit the *start.bat* that's shipped in the .zip
+	1. Change the example POOL by yours
+	2. Change the example PORT by yours
+	3. Change the example WALLET by yours
+	4. You can leave the default password *x*
+5. (Optional) If your coin is *exotic*, maybe you also need to change FORK=0 to another number. See the list in the *start.bat*
+6. Run start.bat
+
+
+## Third Party integration
+
+If you're a Mining Tool dev (like Forager or Awsome Miner...) and want to integrate JCE, here's a good command to spawn JCE.
+Most parameters are similar to other common miners.
+
+```
+jce_cn_cpu_miner64.exe --auto --any --forever --variation FORK --low -o POOL:PORT -u WALLET -p PASSWORD --mport MONITOR SSL
+```
+
+And replace:
+* FORK by the Fork number, see list below, or set 0 for automatic
+* POOL:PORT by the pool address (name or IP):(port), e.g. pool.minexmr.com:4444
+* WALLET by the miner wallet
+* PASSWORD by the miner password
+* MONITOR by the local HTTP monitor server port
+* SSL by either nothing, or "--ssl" if SSL is to be used
+
+To monitor the miner, read http (not https!) at localhost:MONITOR and you'll get some simple JSON like
+
+```
+{
+  "hashrate":
+  {
+    "thread_0": 13.75,
+    "thread_1": 18.29,
+    "thread_2": 21.19,
+    "thread_3": 18.85,
+    "total": 72.06
+  },
+  "result":
+  {
+     "pool": "pool.minexmr.com:4444",
+     "ssl": false,
+     "currency": "Monero (XMR/XMV/XMC/XMO)",
+     "difficulty": 23684,
+     "shares": 5,
+     "hashes": 84473,
+     "uptime": "0:08:28",
+     "effective": 166.29
+  }
+}
+```
+
+Quite self-explanatory,\
+*"effective"* is the net effective hashrate, fees, outdated and invalid shares deduced,\
+*"total"* is the instant physical hashrate
 
 ## Basic topics
 
@@ -165,7 +229,7 @@ Yes, with parameter *--ssl*
 Your coin has probably forked. Add --variation N parameter, with N as listed below, until you find the one that works.
 
 #### Q. What if my wallet is not recognized, or as a different coin?
-Some coins use a wallet syntax so close that they're hard to differenciate, like Lines and Loki. If JCE fails to detect the coin, force it with *--any --variation N* (with N as listed below) and let the miner run. It will still display the wrong coin but mine the good one. And of course proof-check pool side that you correctly get the shares. 
+Some coins use a wallet syntax so close that they're hard to differenciate, like Lines and Loki. If JCE fails to detect the coin, force it with *--any --variation N* (with N as listed below) and let the miner run. It will still display the wrong coin but mine the good one. And of course proof-check pool side that you correctly get the shares.
 
 #### Q. Is there a HTTP server to monitor the miner?
 Not yet, modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job. A minimal server is planned to be added to ease integration of JCE into mining tools, but not intended for human reading. [Forager](http://bit.ly/2wagBKX) was the first tool to integrate JCE, take a look!
