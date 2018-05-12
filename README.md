@@ -9,7 +9,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V, Cryptolight-V7, Cryptonight-Heavy, IPBC and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -100,7 +100,7 @@ If you're new at mining Cryptonight, here's the simplest way:
 
 ## Third Party integration
 
-If you're a Mining Tool dev (like Forager or Awsome Miner...) and want to integrate JCE, here's a good command to spawn JCE.
+If you're a Mining Tool dev (like Forager, Awsome Miner...) and want to integrate JCE, here's a good command to spawn JCE.
 Most parameters are similar to other common miners.
 
 ```
@@ -144,6 +144,15 @@ To monitor the miner, read http (not https!) at localhost:MONITOR and you'll get
 Quite self-explanatory,\
 *"effective"* is the net effective hashrate, fees, outdated and invalid shares deduced,\
 *"total"* is the instant physical hashrate
+
+#### XMRStak mode
+
+If your mining tool does not support JCE yet, you can get a XMR-Stak compatible json by adding parameter --stakjson\
+In such case, the JSON will be like
+
+```
+{"version":"jce/cpu/0.27c","hashrate":{"threads":[[28.0,28.0,28.0],[25.7,25.7,25.7],[26.3,26.3,26.3],[26.5,26.5,26.5]],"total":[106.5,106.5,106.5],"highest":106.5},"results":{"diff_current":15000,"shares_good":1,"shares_total":1,"avg_time":12.0,"hashes_total":15000,"best":[118228,0,0,0,0,0,0,0,0,0],"error_log":[]},"connection":{"pool": "pool.minexmr.com:4444","uptime":12,"ping":0,"error_log":[]}}
+```
 
 ## Basic topics
 
@@ -211,6 +220,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Qwertycoin (QWC)
 * Loki (LOK)
 * Gadcoin (GAD)
+* MarketCash (MKT)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
@@ -233,7 +243,8 @@ Your coin has probably forked. Add --variation N parameter, with N as listed bel
 Some coins use a wallet syntax so close that they're hard to differenciate, like Lines and Loki. If JCE fails to detect the coin, force it with *--any --variation N* (with N as listed below) and let the miner run. It will still display the wrong coin but mine the good one. And of course proof-check pool side that you correctly get the shares.
 
 #### Q. Is there a HTTP server to monitor the miner?
-Not yet, modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job. A minimal server is planned to be added to ease integration of JCE into mining tools, but not intended for human reading. [Forager](http://bit.ly/2wagBKX) was the first tool to integrate JCE, take a look!
+Modern pools provide all you need to monitor your miners (average hashrate, worker-id...). Monitoring is now a pool's job. Still, a minimal HTTP Json server is available with parameter --mport P (P the port number) to ease integration of JCE into mining tools, but not intended for human reading. [Forager](http://bit.ly/2wagBKX) was the first tool to integrate JCE, take a look!\
+For more compatibility, with extra parameter --stakjson, the JSON will be in XMR-Stak format.
 
 
 ## Advanced topics
@@ -266,7 +277,7 @@ No, it must mine on a real pool on Internet.
 Yes, add parameter *--forever*
 
 #### Q. Is it really new? It looks familiar to me...
-Yes it is. But it reuses, on purpose, some de-facto conventions from other common miners, like a XMRStak-style cpu configuration, and the colors of Claymore (green=share, red=error, blue=hashrate, yellow=status).
+Yes it is. But it reuses, on purpose, some de-facto conventions from other common miners, like a XMRStak-style cpu configuration, optional XMRStak-style Json monitoring and the colors of Claymore (green=share, red=error, blue=hashrate, yellow=status).
 
 #### Q. How is the hashrate calculated?
 That's the average speed of the last 512 hashes (not *shares* found, computed *hashes*), rounded at 0.01. And it's fair, the displayed number has no tweak, and includes the fees. The total is first summed from exact per-thread values, then rounded (said differently, it's a rounded sum, not sum of rounded).
@@ -287,7 +298,7 @@ No.
 Yes, and it's a very common case when mining TurtleCoin or IPBC.
 
 #### Q. What is "use_cache":false useful for?
-The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. However mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance.
+The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones.
 
 #### Q. What a great job! Can I make a donation?
 Thanks bro. You can, with the *--donate* parameter which raise the fees to 80%, or by sending coins to the donation wallet (the one in the start.bat file included).
@@ -303,15 +314,17 @@ All current forks are supported:
 * N=5 Cryptonight-Heavy
 * N=6 Cryptolight-IPBC
 * N=7 Cryptonight-XTL
+* N=8 Cryptonight-Alloy
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Graft are now Cryptonight V7,
 * SuperiorCoin, BBSCoin and Lines are Cryptonight V7 too,
-* Sumokoin, Loki and Haven are now Cryptonight-Heavy,
+* Sumokoin, Loki, Ombre and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
 * Interplanetary Broadcast has is own Cryptolight-IPBC
 * Stellite has is own Cryptonight-XTL
+* Alloy has is own Cryptonight-Alloy
 * Everything else is still assumed Cryptonight
 
 More will be updated as more coins forks.
