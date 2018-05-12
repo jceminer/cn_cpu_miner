@@ -374,7 +374,8 @@ However, if this mode is powerful, it offers a gain only on some rare, old CPU:
 * Not using Cryptonight-Heavy (it's so... heavy that the master thread has no *resource* to share)
 * With low cache but decent compute power (read: no Atom or antique P4)
 
-Remains some entry-level Core2, Athlons and Celeron/Pentium.
+Remains some entry-level Core2, Athlons and Celeron/Pentium.\
+See the example config file *config.example.txt* in the .zip for details.
 
 ### Multi-hash
 
@@ -383,7 +384,7 @@ JCE allows fine-tuning of what mode is used on what CPU, mixing is possible, and
 Autoconfig may enable multi-hash in some cases, but it's mostly used with manual config with -c parameter. Here's an example:
 
 ```
-cpu_threads_conf" : 
+"cpu_threads_conf" : 
 [ 
      { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":2 },
      { "cpu_architecture" : "auto", "affine_to_cpu" : 1, "use_cache" : true, "multi_hash":1 },
