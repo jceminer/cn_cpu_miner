@@ -298,7 +298,7 @@ No.
 Yes, and it's a very common case when mining TurtleCoin or IPBC.
 
 #### Q. What is "use_cache":false useful for?
-The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones.
+The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones. See below for examples.
 
 #### Q. What a great job! Can I make a donation?
 Thanks bro. You can, with the *--donate* parameter which raise the fees to 80%, or by sending coins to the donation wallet (the one in the start.bat file included).
@@ -378,7 +378,77 @@ Remains some entry-level Core2, Athlons and Celeron/Pentium.
 
 ### Multi-hash
 
-To be explained...
+This is what some other miners call *low-power* mode. It's about using the same CPU to mine several hashes at the same time, using several time the amount of memory and cache. Triple hash for Monero involves 3x2=6M cache and memory per CPU for example.\
+JCE allows fine-tuning of what mode is used on what CPU, mixing is possible, and often desirable.
+Autoconfig may enable multi-hash in some cases, but it's mostly used with manual config with -c parameter. Here's an example:
+
+```
+cpu_threads_conf" : 
+[ 
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":2 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 1, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 2, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 3, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 4, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 5, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 6, "use_cache" : true, "multi_hash":2 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 7, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 8, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" : 9, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" :10, "use_cache" : true, "multi_hash":1 },
+     { "cpu_architecture" : "auto", "affine_to_cpu" :11, "use_cache" : true, "multi_hash":1 },
+]
+```
+This is the best configuration to mine Cryptolight, TurtleCoin or IPBC on a Ryzen 1600/1600X (12 logical CPUs, 16M cache).\
+By using simple hash, the 12 core would have used 12M cache, because that algo requires 1M per thread.
+The unused 4M can be involved into mining by turning some thread to double-hash (this is: "multi_hash":2). Curiously, Using 4 double-threads to use the whole 16M cache offers less performance, the best is 10 simple, and 2 double. It may worth to test for your specific CPU, all CPU tend to have a different optimal configuration.
+
+The value of "multi_hash" goes from 1 (default) to 6.
+
+### No-cache mode
+
+Another exclusive feature of JCE!\
+This is the reciprocal of multi-hash: for cases when your have wasted CPU cores, typically when mining Cryptonight Heavy.
+If you have a Ryzen 1700, 8 physical cores, 16 logical CPUs, 16M cache, the naive configuration would be 4 threads on 4 cores, 4M cache each, total 16M.
+
+```
+"cpu_threads_conf" :  
+[  
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" :  1, "use_cache" : true },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" :  5, "use_cache" : true },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" :  9, "use_cache" : true },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 13, "use_cache" : true },
+]
+```
+
+But 8 logical CPUs would be unused. Enabling them would flood the cache and lead to worse performance. What to do is making them mine, but with no cache, direct to memory. They will mine slowly, but won't disturb other threads, and add some performance for free.
+
+```
+"cpu_threads_conf" :  
+[  
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 1, "use_cache" : true },
+     
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 2, "use_cache" : false },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 3, "use_cache" : false },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 5, "use_cache" : true },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 6, "use_cache" : false },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 7, "use_cache" : false },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 9, "use_cache" : true },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 10, "use_cache" : false },
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 11, "use_cache" : false },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 13, "use_cache" : true },
+ 
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 14, "use_cache" : false },    
+     { "cpu_architecture" : "ryzen", "affine_to_cpu" : 15, "use_cache" : false },    
+]
+```
+Note how we added no-cache threads on free *physical* cores, but not on otherwise used free *logical* CPUs. That's for AMD. On Intel, you often can add no-cache threads on all free CPUs, logical or not, to get extra performance.
+
 
 ## Large Pages
 
