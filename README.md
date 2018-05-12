@@ -317,7 +317,7 @@ All current forks are supported:
 * N=8 Cryptonight-Alloy
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero, Monero-V, Graft are now Cryptonight V7,
+* Monero, Monero-V, Graft and Intense are now Cryptonight V7,
 * SuperiorCoin, BBSCoin and Lines are Cryptonight V7 too,
 * Sumokoin, Loki, Ombre and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
