@@ -3,6 +3,12 @@ Welcome to the Fastest Cryptonote CPU Miner ever!
 
 BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 
+Fork current status as of May-2018
+```
+XTL fork supported, but not enabled by default yet, use --variation 7 after the fork
+MKT for supported, enabled by default in advance since the fork is planned for ~may-18-2018. use --variation 1 before the fork, --variation 9 after.
+```
+
 ### Is that a Virus? No!
 Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, including Windows Defender. But it's not. Read more about Privacy and Security below.
 
