@@ -9,7 +9,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -151,7 +151,7 @@ If your mining tool does not support JCE yet, you can get a XMR-Stak compatible 
 In such case, the JSON will be like
 
 ```
-{"version":"jce/cpu/0.27c","hashrate":{"threads":[[28.0,28.0,28.0],[25.7,25.7,25.7],[26.3,26.3,26.3],[26.5,26.5,26.5]],"total":[106.5,106.5,106.5],"highest":106.5},"results":{"diff_current":15000,"shares_good":1,"shares_total":1,"avg_time":12.0,"hashes_total":15000,"best":[118228,0,0,0,0,0,0,0,0,0],"error_log":[]},"connection":{"pool": "pool.minexmr.com:4444","uptime":12,"ping":0,"error_log":[]}}
+{"version":"jce/0.27c/cpu","hashrate":{"threads":[[28.0,28.0,28.0],[25.7,25.7,25.7],[26.3,26.3,26.3],[26.5,26.5,26.5]],"total":[106.5,106.5,106.5],"highest":106.5},"results":{"diff_current":15000,"shares_good":1,"shares_total":1,"avg_time":12.0,"hashes_total":15000,"best":[118228,0,0,0,0,0,0,0,0,0],"error_log":[]},"connection":{"pool": "pool.minexmr.com:4444","uptime":12,"ping":0,"error_log":[]}}
 ```
 
 ## Basic topics
@@ -315,6 +315,7 @@ All current forks are supported:
 * N=6 Cryptolight-IPBC
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
+* N=9 Cryptonight-MKT
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Graft and Intense are now Cryptonight V7,
@@ -325,6 +326,7 @@ The current *Automatic* mode **behaves the old way on alt-coins**:
 * Interplanetary Broadcast has is own Cryptolight-IPBC
 * Stellite has is own Cryptonight-XTL
 * Alloy has is own Cryptonight-Alloy
+* MarketCash has is own Cryptonight-MKT
 * Everything else is still assumed Cryptonight
 
 More will be updated as more coins forks.
@@ -349,7 +351,9 @@ Type --help to get the complete list.
 
 ### Super Easy CPU configuration
 
-Use --auto and you're good.
+Use --auto and you're good.\
+Note the auto-config aims for *absolute performance*. It may be at the cost of higher power consumption and less responsive computer. If your goal is not optimal performance, but optimal profitability or background mining on a real PC (not rig), better use the manual configuration, and look at the multi-hash, it often provides a better speed/power ratio.
+
 
 ### Normal Easy CPU configuration
 
@@ -375,7 +379,8 @@ However, if this mode is powerful, it offers a gain only on some rare, old CPU:
 * With low cache but decent compute power (read: no Atom or antique P4)
 
 Remains some entry-level Core2, Athlons and Celeron/Pentium.\
-See the example config file *config.example.txt* in the .zip for details.
+See the example config file *config.example.txt* in the .zip for details.\
+Dual-thread mining is disabled by default, and never enabled by auto-config.
 
 ### Multi-hash
 
@@ -448,7 +453,7 @@ But 8 logical CPUs would be unused. Enabling them would flood the cache and lead
      { "cpu_architecture" : "ryzen", "affine_to_cpu" : 15, "use_cache" : false },    
 ]
 ```
-Note how we added no-cache threads on free *physical* cores, but not on otherwise used free *logical* CPUs. That's for AMD. On Intel, you often can add no-cache threads on all free CPUs, logical or not, to get extra performance.
+Note how we added no-cache threads on free *physical* cores, but not on otherwise unused free *logical* CPUs. That's for AMD. On Intel, you often can add no-cache threads on all free CPUs, logical or not, to get extra performance.
 
 
 ## Large Pages
