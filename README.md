@@ -288,6 +288,9 @@ Better look at your pool's reports, but JCE also gives the average effective net
 #### Q. Can I do pool auto-switch in case of failure? Or periodically?
 Not directly, but the *-q* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job. The packaged .zip comes with an exemple, edit it to fit your needs.
 
+#### Q. What if the Architecture codename is wrong (e.g. my CoffeLake is detected as Core2)?
+It may be because of an option in your BIOS *Max CPUID* or the microcode is not up-to-date. However the codename displayed is mostly cosmetical and JCE will still choose the good assembly based on your CPU instruction set. If a normally available instruction set is missing (e.g. your Westmere has no AES) again, that's to be unlocked in your BIOS.
+
 #### Q. Can I mix architectures when mining (i.e. thread 1 uses core2, thread 2 uses pentium4)?
 It sounds strange, but yes. However, that's mostly useful for tests.
 
