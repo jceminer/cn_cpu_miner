@@ -15,7 +15,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -48,12 +48,12 @@ Here's a benchmark against three other common miners.\
 * Fees are included in the score
 
 
-##### Core2 Quad 2.666 GHz, 4 threads, 64-bits, Cryptonight
+##### Core2 Quad 2.666 GHz 12M, 4 threads, 64-bits, Cryptonight
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
 116 | 80 | 85 | 57
 
-##### Core2 Quad 2.666 GHz, 4 threads, 32-bits, Cryptonight
+##### Core2 Quad 2.666 GHz 12M, 4 threads, 32-bits, Cryptonight
 JCE | XMRStak | XMRig | Claymore
 ------------ | ------------- | - | -
 93 | 0 | 68 | 50
@@ -103,6 +103,8 @@ If you're new at mining Cryptonight, here's the simplest way:
 5. (Optional) If your coin is *exotic*, maybe you also need to change FORK=0 to another number. See the list in the *start.bat*
 6. Run start.bat
 
+Note: the same applies to the Linux version *start.sh*
+
 
 ## Third Party integration
 
@@ -110,7 +112,7 @@ If you're a Mining Tool dev (like Forager, Awsome Miner...) and want to integrat
 Most parameters are similar to other common miners.
 
 ```
-jce_cn_cpu_miner64.exe --auto --any --forever --variation FORK --low -o POOL:PORT -u WALLET -p PASSWORD --mport MONITOR SSL
+jce_cn_cpu_miner64 --auto --any --forever --variation FORK --low -o POOL:PORT -u WALLET -p PASSWORD --mport MONITOR SSL
 ```
 
 And replace:
@@ -227,11 +229,12 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Loki (LOK)
 * Gadcoin (GAD)
 * MarketCash (MKT)
+* ArtoCash (RTO)
 * Nicehash Cryptonight v7
-* Minergate Cryptonight
-* MiningPoolHub Cryptonight
+* Minergate Cryptonight v7
+* MiningPoolHub Cryptonight v7
 * MiningRigRentals Cryptonight v7
-* Suprnova Cryptonight
+* Suprnova Cryptonight v7
 
 Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
 The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
@@ -256,16 +259,16 @@ For more compatibility, with extra parameter --stakjson, the JSON will be in XMR
 ## Advanced topics
 
 #### Q. Are there requirements or dependencies?
-No. JCE is just a big standalone .exe
+No. JCE is just a big standalone executable.
 
 #### Q. Is there a Linux version?
-Not yet.
+Yes, starting from version 0.29
 
 #### Q. Is there a GPU version?
 Not yet.
 
 #### Q. Is there a 32-bits version?
-Yes, both 32 and 64 are always in the same release.
+Yes, both 32 and 64 are always in the same release, for both Linux and Windows.
 
 #### Q. Is low-power mode supported?
 That's how other miners call the multi-hash mode. I call it multi-hash because it's about computing several hashes at the same time, barely related to cpu voltage. And yes it's now supported, with max multi = 6.
@@ -292,22 +295,23 @@ That's the average speed of the last 512 hashes (not *shares* found, computed *h
 Better look at your pool's reports, but JCE also gives the average effective net hashrate when pressing R. It's usually slightly lower than the physical hashrate because of outdated shares and fees.
 
 #### Q. Can I do pool auto-switch in case of failure? Or periodically?
-Not directly, but the *-q* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job. The packaged .zip comes with an exemple, edit it to fit your needs.
+Not directly, but the *-q* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job. The packaged .zip comes with an exemple *multipools.bat*, edit it to fit your needs.
 
-#### Q. What if the Architecture codename is wrong (e.g. my CoffeLake is detected as Core2)?
-It may be because of an option in your BIOS *Max CPUID* or the microcode is not up-to-date. However the codename displayed is mostly cosmetical and JCE will still choose the good assembly based on your CPU instruction set. If a normally available instruction set is missing (e.g. your Westmere has no AES) again, that's to be unlocked in your BIOS.
+#### Q. What if the instruction set is wrong (e.g. my CoffeLake is detected as non-AES)?
+It may be because of an option in your BIOS *Max CPUID* or the microcode is not up-to-date. If a normally available instruction set is missing (e.g. your Westmere has no AES or no SSE4) again, that's to be unlocked in your BIOS.
 
 #### Q. Can I mix architectures when mining (i.e. thread 1 uses core2, thread 2 uses pentium4)?
 It sounds strange, but yes. However, that's mostly useful for tests.
 
 #### Q. Can I mix coins when mining (i.e. thread 1 mines XMR, thread 2 mines ETN)?
-No.
+No, and switching the Wallet/Pool requires restarting the miner, but it can be planned and automated, see the script *multipools.bat* in the .zip for an example.
 
 #### Q. Can I mix simple-hash and multi-hash?
-Yes, and it's a very common case when mining TurtleCoin or IPBC.
+Yes, all combinations are supported, and it's a very common case when mining TurtleCoin, Aeon or IPBC.
 
 #### Q. What is "use_cache":false useful for?
-The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones. See below for examples.
+The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones. See below for examples.\
+:heavy_exclamation_mark: The no-cache mode is available only in the Windows version.
 
 #### Q. What a great job! Can I make a donation?
 Thanks bro. You can, with the *--donate* parameter which raise the fees to 80%, or by sending coins to the donation wallet (the one in the start.bat file included).
@@ -325,6 +329,7 @@ All current forks are supported:
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT
+* N=10 Cryptonight-ArtoCash
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Graft and Intense are now Cryptonight V7,
@@ -336,6 +341,7 @@ The current *Automatic* mode **behaves the old way on alt-coins**:
 * Stellite has is own Cryptonight-XTL
 * Alloy has is own Cryptonight-Alloy
 * MarketCash has is own Cryptonight-MKT
+* ArtoCash has is own Cryptonight-Arto
 * Everything else is still assumed Cryptonight
 
 More will be updated as more coins forks.
@@ -423,6 +429,7 @@ The value of "multi_hash" goes from 1 (default) to 6.
 ### No-cache mode
 
 Another exclusive feature of JCE!\
+:heavy_exclamation_mark: The no-cache mode is available only in the Windows version.\
 This is the reciprocal of multi-hash: for cases when your have wasted CPU cores, typically when mining Cryptonight Heavy.
 If you have a Ryzen 1700, 8 physical cores, 16 logical CPUs, 16M cache, the naive configuration would be 4 threads on 4 cores, 4M cache each, total 16M.
 
@@ -467,7 +474,21 @@ Note how we added no-cache threads on free *physical* cores, but not on otherwis
 
 ## Large Pages
 
-To be explained...
+Large Pages, also called Huge Pages (Linux) or Locked Pages (Windows) is an hardware feature which allow a x86 CPU to access small portions of dedicated memory faster. It's however disabled by default on both Linux and Windows.
+
+The Windows version of JCE will try to enable them, and it will probably succeed when running as admin (parameter --elevate) on a Windows 10 Pro. On other versions, it may depend on your Windows configuration. On Linux, it has to be enabled manually.
+
+[Guide for Linux](https://wiki.debian.org/Hugepages#Enabling_HugeTlbPage)
+
+[Guide for Windows](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-the-lock-pages-in-memory-option-windows?view=sql-server-2017)\
+[Another guide for Windows](http://support.sisoftware.co.uk/knowledgebase.php?article=52)\
+[Yet another guide for Windows](http://awesomeprojectsxyz.blogspot.fr/2017/11/windows-10-home-how-to-enable-lock.html)
+
+
+JCE uses the Large Pages the same way as any other miner, so if you already configured Large Pages for XMrig, XMRStak or any other, so it will work fine with JCE too.
+
+JCE logs all Large Pages allocations at startup, and cleanly free them at close. If it fails to enable/allocate Large Pages, it will fallback to normal memory, which is 10% slower.
+
 
 ## Privacy and Security
 
