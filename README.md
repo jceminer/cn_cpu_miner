@@ -3,10 +3,15 @@ Welcome to the Fastest Cryptonote CPU Miner ever!
 
 BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 
+:heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
+Download JCE only from this Github page.
+
 Fork current status as of May-2018
 ```
 XTL fork supported, but not enabled by default yet, use --variation 7 after the fork
 MKT for supported, enabled by default in advance since the fork is planned for ~may-18-2018. use --variation 1 before the fork, --variation 9 after.
+ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
+ITA defaults to CN-Heavy starting from 0.29b, use --variation 
 ```
 
 ### Is that a Virus? No!
@@ -230,6 +235,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Gadcoin (GAD)
 * MarketCash (MKT)
 * ArtoCash (RTO)
+* Saronite (XRN)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight v7
 * MiningPoolHub Cryptonight v7
@@ -265,7 +271,7 @@ No. JCE is just a big standalone executable.
 Yes, starting from version 0.29
 
 #### Q. Is there a GPU version?
-Not yet.
+Not yet, working on.
 
 #### Q. Is there a 32-bits version?
 Yes, both 32 and 64 are always in the same release, for both Linux and Windows.
@@ -333,8 +339,8 @@ All current forks are supported:
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Graft and Intense are now Cryptonight V7,
-* SuperiorCoin, BBSCoin and Lines are Cryptonight V7 too,
-* Sumokoin, Loki, Ombre and Haven are now Cryptonight-Heavy,
+* SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
+* Sumokoin, Loki, Ombre, Italo, Saronite and Haven are now Cryptonight-Heavy,
 * Aeon is still Cryptolight
 * TurtleCoin is now Cryptolight V7
 * Interplanetary Broadcast has is own Cryptolight-IPBC
