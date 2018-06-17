@@ -6,12 +6,16 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
-Fork current status as of May-2018
+Fork current status as of June-2018
 ```
-XTL fork supported, but not enabled by default yet, use --variation 7 after the fork
-MKT for supported, enabled by default in advance since the fork is planned for ~may-18-2018. use --variation 1 before the fork, --variation 9 after.
+XTL fork supported, now enabled by default
+MKT for support enabled by default
 ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
-ITA defaults to CN-Heavy starting from 0.29b, use --variation 
+ITA defaults to CN-Heavy starting from 0.29b
+Elya defaults to CN-v7
+Niobio and Bixbite defaults to CN-Heavy
+MSR fork supported, enabled by default
+Haven fork supported, enabled by default
 ```
 
 ### Is that a Virus? No!
@@ -20,7 +24,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto, MSR, HVX and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -236,6 +240,8 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * MarketCash (MKT)
 * ArtoCash (RTO)
 * Saronite (XRN)
+* Bixbite (BXB)
+* Wownero (WOW)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight v7
 * MiningPoolHub Cryptonight v7
@@ -336,18 +342,21 @@ All current forks are supported:
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT
 * N=10 Cryptonight-ArtoCash
+* N=11 Cryptonight-Masari
+* N=12 Cryptonight-Haven
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero, Monero-V, Graft and Intense are now Cryptonight V7,
+* Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
 * SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
-* Sumokoin, Loki, Ombre, Italo, Saronite and Haven are now Cryptonight-Heavy,
-* Aeon is still Cryptolight
-* TurtleCoin is now Cryptolight V7
+* Sumokoin, Loki, Ombre, Italo, Bixbite, Niobio, Saronite are now Cryptonight-Heavy,
+* Aeon and TurtleCoin are now Cryptolight-v7
 * Interplanetary Broadcast has is own Cryptolight-IPBC
 * Stellite has is own Cryptonight-XTL
 * Alloy has is own Cryptonight-Alloy
 * MarketCash has is own Cryptonight-MKT
 * ArtoCash has is own Cryptonight-Arto
+* Masari has is own Cryptonight-Masari
+* Haven has is own Cryptonight-Haven
 * Everything else is still assumed Cryptonight
 
 More will be updated as more coins forks.
@@ -519,3 +528,7 @@ It doesn't:
 
 #### Q. I see the JCE process punching the attrib command, what is it doing?
 JCE does never run attrib, nor any other command, but it disguises its mining process into a *attrib* to avoid being detected and erased by antiviruses. Again, JCE does nothing malicious, but like all other miners it's detected as a virus so I've to do such a trick. That's the normal behavior of the 64-bits version. I never had the 32-bits detected, so I don't use that trick with it.
+
+#### Q. Why is the binary so big?
+Because it includes all combinations of implemntations for all CPUs, all variations, and all Multi-hashes. And with or without Dual-Thread. And with or without Cache. That's litterally hundreds of assembly codes.\
+In a lesser extent, it's a standalone executable with the HTTP micro server and SSL support embedded, which makes it still bigger.
