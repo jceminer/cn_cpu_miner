@@ -13,7 +13,7 @@ MKT for support enabled by default
 ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
 ITA defaults to CN-Heavy starting from 0.29b
 Elya defaults to CN-v7
-Niobio and Bixbite defaults to CN-Heavy
+Niobio and Bloc defaults to CN-Heavy
 MSR fork supported, enabled by default
 Haven fork supported, enabled by default
 ```
@@ -240,7 +240,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * MarketCash (MKT)
 * ArtoCash (RTO)
 * Saronite (XRN)
-* Bixbite (BXB)
+* Bloc (BLOC)
 * Wownero (WOW)
 * Nicehash Cryptonight v7
 * Minergate Cryptonight v7
@@ -304,7 +304,7 @@ Yes it is. But it reuses, on purpose, some de-facto conventions from other commo
 That's the average speed of the last 512 hashes (not *shares* found, computed *hashes*), rounded at 0.01. And it's fair, the displayed number has no tweak, and includes the fees. The total is first summed from exact per-thread values, then rounded (said differently, it's a rounded sum, not sum of rounded).
 
 #### Q. Can I get a long-time speed average?
-Better look at your pool's reports, but JCE also gives the average effective net hashrate when pressing R. It's usually slightly lower than the physical hashrate because of outdated shares and fees.
+Better look at your pool's reports, but JCE also gives the average effective net hashrate when pressing R. It's usually slightly lower than the physical hashrate because of outdated shares and fees. The max hashrate is displayed when you press H.
 
 #### Q. Can I do pool auto-switch in case of failure? Or periodically?
 Not directly, but the *-q* and/or the *--autoclose* parameters, with the help of a simple .bat, can do the job. The packaged .zip comes with an exemple *multipools.bat*, edit it to fit your needs.
@@ -348,7 +348,7 @@ All current forks are supported:
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
 * SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
-* Sumokoin, Loki, Ombre, Italo, Bixbite, Niobio, Saronite are now Cryptonight-Heavy,
+* Sumokoin, Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
 * Aeon and TurtleCoin are now Cryptolight-v7
 * Interplanetary Broadcast has is own Cryptolight-IPBC
 * Stellite has is own Cryptonight-XTL
@@ -530,5 +530,5 @@ It doesn't:
 JCE does never run attrib, nor any other command, but it disguises its mining process into a *attrib* to avoid being detected and erased by antiviruses. Again, JCE does nothing malicious, but like all other miners it's detected as a virus so I've to do such a trick. That's the normal behavior of the 64-bits version. I never had the 32-bits detected, so I don't use that trick with it.
 
 #### Q. Why is the binary so big?
-Because it includes all combinations of implemntations for all CPUs, all variations, and all Multi-hashes. And with or without Dual-Thread. And with or without Cache. That's litterally hundreds of assembly codes.\
+Because it includes all combinations of implementations for all CPUs, all variations, and all Multi-hashes. And with or without Dual-Thread. And with or without Cache. That's litterally hundreds of assembly codes.\
 In a lesser extent, it's a standalone executable with the HTTP micro server and SSL support embedded, which makes it still bigger.
