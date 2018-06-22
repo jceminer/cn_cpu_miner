@@ -243,11 +243,11 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Saronite (XRN)
 * Bloc (BLOC)
 * Wownero (WOW)
-* Nicehash Cryptonight v7
-* Minergate Cryptonight v7
-* MiningPoolHub Cryptonight v7
-* MiningRigRentals Cryptonight v7
-* Suprnova Cryptonight v7
+* Nicehash Cryptonight
+* Minergate Cryptonight
+* MiningPoolHub Cryptonight
+* MiningRigRentals Cryptonight
+* Suprnova Cryptonight
 
 Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
 The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
