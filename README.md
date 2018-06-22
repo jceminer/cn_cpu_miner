@@ -14,7 +14,7 @@ ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.2
 ITA defaults to CN-Heavy starting from 0.29b
 Elya defaults to CN-v7
 Niobio and Bloc defaults to CN-Heavy
-MSR fork supported, enabled by default
+MSR (CN-Fast) fork supported, enabled by default
 Haven fork supported, enabled by default
 ```
 
@@ -24,7 +24,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto, MSR, HVX and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto, MSR/Fast, HVX and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -142,7 +142,8 @@ To monitor the miner, read http (not https!) at localhost:MONITOR and you'll get
     "thread_1": 18.29,
     "thread_2": 21.19,
     "thread_3": 18.85,
-    "total": 72.06
+    "total": 72.06,
+    "max": 72.87
   },
   "result":
   {
@@ -168,7 +169,7 @@ If your mining tool does not support JCE yet, you can get a XMR-Stak compatible 
 In such case, the JSON will be like
 
 ```
-{"version":"jce/0.27c/cpu","hashrate":{"threads":[[28.0,28.0,28.0],[25.7,25.7,25.7],[26.3,26.3,26.3],[26.5,26.5,26.5]],"total":[106.5,106.5,106.5],"highest":106.5},"results":{"diff_current":15000,"shares_good":1,"shares_total":1,"avg_time":12.0,"hashes_total":15000,"best":[118228,0,0,0,0,0,0,0,0,0],"error_log":[]},"connection":{"pool": "pool.minexmr.com:4444","uptime":12,"ping":0,"error_log":[]}}
+{"version":"jce/0.27c/cpu","hashrate":{"threads":[[28.0,28.0,28.0],[25.7,25.7,25.7],[26.3,26.3,26.3],[26.5,26.5,26.5]],"total":[106.5,106.5,106.5],"highest":108.5},"results":{"diff_current":15000,"shares_good":1,"shares_total":1,"avg_time":12.0,"hashes_total":15000,"best":[118228,0,0,0,0,0,0,0,0,0],"error_log":[]},"connection":{"pool": "pool.minexmr.com:4444","uptime":12,"ping":0,"error_log":[]}}
 ```
 
 ## Basic topics
@@ -342,7 +343,7 @@ All current forks are supported:
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT
 * N=10 Cryptonight-ArtoCash
-* N=11 Cryptonight-Masari
+* N=11 Cryptonight-Fast (Masari)
 * N=12 Cryptonight-Haven
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
@@ -357,6 +358,7 @@ The current *Automatic* mode **behaves the old way on alt-coins**:
 * ArtoCash has is own Cryptonight-Arto
 * Masari has is own Cryptonight-Masari
 * Haven has is own Cryptonight-Haven
+* Pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
 * Everything else is still assumed Cryptonight
 
 More will be updated as more coins forks.
@@ -530,5 +532,5 @@ It doesn't:
 JCE does never run attrib, nor any other command, but it disguises its mining process into a *attrib* to avoid being detected and erased by antiviruses. Again, JCE does nothing malicious, but like all other miners it's detected as a virus so I've to do such a trick. That's the normal behavior of the 64-bits version. I never had the 32-bits detected, so I don't use that trick with it.
 
 #### Q. Why is the binary so big?
-Because it includes all combinations of implementations for all CPUs, all variations, and all Multi-hashes. And with or without Dual-Thread. And with or without Cache. That's litterally hundreds of assembly codes.\
+Because it includes all combinations of implementations for all CPUs, all variations, and all Multi-hashes. And with or without Dual-Thread. And with or without Cache. That's literally hundreds of assembly codes.\
 In a lesser extent, it's a standalone executable with the HTTP micro server and SSL support embedded, which makes it still bigger.
