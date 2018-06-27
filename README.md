@@ -6,6 +6,10 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
+#### Take a look at the GPU prototype!
+
+https://github.com/jceminer/cn_gpu_miner
+
 Fork current status as of June-2018
 ```
 XTL fork supported, now enabled by default
