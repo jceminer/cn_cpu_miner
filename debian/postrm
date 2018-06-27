@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+
+    purge)
+        deluser --quiet --system jce-cn-cpu-miner > /dev/null || true
+        sysctl_conf=/etc/sysctl.d/50-jce-cn-cpu-miner.conf
+        if [ -f "${sysctl_conf}" ]; then
+            rm -f "${sysctl_conf}"
+        fi
+    ;;
+
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    ;;
+
+    *)
+        echo "postrm called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

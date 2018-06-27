@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure)
+
+        # Create user
+        if ! getent passwd jce-cn-cpu-miner >/dev/null; then
+          adduser --disabled-password --quiet --system \
+            --home /var/lib/jce-cn-cpu-miner --no-create-home \
+            jce-cn-cpu-miner
+        fi
+
+        # Configure huge memory page
+        /usr/share/jce-cn-cpu-miner/configure-huge-memory-pages.sh
+
+        # Display doc
+        echo
+        cat /usr/share/doc/jce-cn-cpu-miner/README.Debian
+        sleep 5
+        echo
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

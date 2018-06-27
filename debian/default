@@ -1,0 +1,2 @@
+# See jce-cn-cpu-miner --help for more information
+ARGS="--auto --forever --low -o xmrpool.eu:3333 -u 43iTLAWVGiv5T53hXS7S35ehZtvJ7zmP6gnyMqoCP66gPoqRNiSY34TXhiaQEGiCaMe79YVzRicRA1wAnYsvTNTEJ5ojZPu -p x"

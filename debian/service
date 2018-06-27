@@ -1,0 +1,21 @@
+[Unit]
+Description=Cryptonight mining for CPUs
+
+[Service]
+EnvironmentFile=/etc/default/jce-cn-cpu-miner
+ExecStart=/usr/bin/jce-cn-cpu-miner $ARGS
+User=jce-cn-cpu-miner
+LimitMEMLOCK=256M
+Nice=19
+OOMScoreAdjust=1000
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+CPUSchedulingPolicy=idle
+CPUSchedulingResetOnFork=false
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=jce-cn-cpu-miner
+SyslogLevel=info
+
+[Install]
+WantedBy=multi-user.target

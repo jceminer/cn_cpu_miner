@@ -1,0 +1,34 @@
+jce-cn-cpu-miner for Debian
+---------------------------
+
+
+/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\
+
+  Edit /etc/default/jce-cn-cpu-miner file to configure your pool and address !
+  Otherwise you will be mining Monero for JCE developer ! 
+
+/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\
+
+
+Adter changing it run the following command to apply your settings:
+  systemctl restart jce-cn-cpu-miner
+
+During installation, huge memory page will be activated by this file:
+  /etc/sysctl.d/50-jce-cn-cpu-miner.conf
+
+If it was already set to a large enough value, no change will be done
+but the file will be here (with commented value) so you can still enable it
+later.
+
+If you see:
+
+  "Failed to allocate shared Large Page, using normal memory (slower)"
+
+errors in logs, it's probably related to huge pages being not activated,
+or not large enough.
+
+You can re-run large page enabling script again to fix it:
+  /usr/share/jce-cn-cpu-miner/configure-huge-memory-pages.sh
+
+
+ -- Adam Cecile <acecile@le-vert.net>  Wed, 27 Jun 2018 19:43:09 +0200

@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+
+DESTDIR := $(CURDIR)/debian/jce-cn-cpu-miner
+
+ARCH := $(shell dpkg-architecture -qDEB_TARGET_ARCH)
+
+ifeq ($(DEB_VERSION),)
+    $(error Please set VERSION environment variable)
+endif
+
+ZIP_FILE := jce_cn_cpu_miner.linux.$(DEB_VERSION).zip
+
+%:
+	dh $@ --parallel --with systemd
+
+override_dh_auto_install:
+	
+	dh_auto_clean
+	echo $(ZIP_FILE)
+	unzip $(ZIP_FILE) -d debian/tmp
+	
+ifeq ($(ARCH),amd64)
+	install -D -o root -g root -m 0755 \
+		"debian/tmp/jce_cn_cpu_miner64" \
+		"$(DESTDIR)/usr/bin/jce-cn-cpu-miner"
+else ifeq ($(ARCH),i386)
+	install -D -o root -g root -m 0755 \
+		"debian/tmp/jce_cn_cpu_miner32" \
+		"$(DESTDIR)/usr/bin/jce-cn-cpu-miner"
+else
+	$(error Unsupported architecture $(ARCH))
+endif
+	
+	install -D -o root -g root -m 0755 \
+		"configure-huge-memory-pages.sh" \
+		"$(DESTDIR)/usr/share/jce-cn-cpu-miner/configure-huge-memory-pages.sh"
+
+override_dh_strip:
+
+override_dh_gencontrol:
+	dh_gencontrol -- -v"$(DEB_VERSION)"
