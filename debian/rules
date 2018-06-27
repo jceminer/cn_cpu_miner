@@ -5,7 +5,7 @@ DESTDIR := $(CURDIR)/debian/jce-cn-cpu-miner
 ARCH := $(shell dpkg-architecture -qDEB_TARGET_ARCH)
 
 ifeq ($(DEB_VERSION),)
-    $(error Please set VERSION environment variable)
+    $(error Please set DEB_VERSION environment variable)
 endif
 
 ZIP_FILE := jce_cn_cpu_miner.linux.$(DEB_VERSION).zip
