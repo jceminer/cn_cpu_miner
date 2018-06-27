@@ -282,7 +282,7 @@ No. JCE is just a big standalone executable.
 Yes, starting from version 0.29
 
 #### Q. Is there a GPU version?
-Not yet, working on.
+Yes, starting from version 0.30
 
 #### Q. Is there a 32-bits version?
 Yes, both 32 and 64 are always in the same release, for both Linux and Windows.
