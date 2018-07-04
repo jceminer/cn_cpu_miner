@@ -10,6 +10,9 @@ Download JCE only from this Github page.
 
 https://github.com/jceminer/cn_gpu_miner
 
+#### Bittube-v4 is supported in the GPU version.
+Of course it will be backported to the CPU version, but you can already use the GPU version with exact same configuration, plus parameter --no-gpu to disable any GPU usage.
+
 Fork current status as of June-2018
 ```
 XTL fork supported, now enabled by default
@@ -20,6 +23,7 @@ Elya defaults to CN-v7
 Niobio and Bloc defaults to CN-Heavy
 MSR (CN-Fast) fork supported, enabled by default
 Haven fork supported, enabled by default
+TUBE v4 fork supported in GPU version (including CPU-only mode), enabled by default
 ```
 
 ### Is that a Virus? No!
@@ -121,7 +125,7 @@ Note: the same applies to the Linux version *start.sh*
 
 ## Third Party integration
 
-If you're a Mining Tool dev (like Forager, Awsome Miner...) and want to integrate JCE, here's a good command to spawn JCE.
+If you're a Mining Tool dev (like Forager, Awesome Miner...) and want to integrate JCE, here's a good command to spawn JCE.
 Most parameters are similar to other common miners.
 
 ```
@@ -207,6 +211,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Sumokoin (SUMO)
 * Bitcoal (COAL)
 * Bitcedi (BXC)
+* Bittube (TUBE)
 * Dinastycoin (DCY)
 * Leviarcoin (XLC)
 * Fonero (FNO)
@@ -225,7 +230,6 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Bitsum (BSM)
 * SuperiorCoin (SUP)
 * EDollar (EDL)
-* Interplanetary Broadcast (IPBC)
 * Masari (MSR)
 * Alloy (XAO)
 * BBSCoin (BBS)
@@ -349,13 +353,14 @@ All current forks are supported:
 * N=10 Cryptonight-ArtoCash
 * N=11 Cryptonight-Fast (Masari)
 * N=12 Cryptonight-Haven
+* N=13 Cryptonight-Bittube v4
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
 * SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
 * Sumokoin, Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
 * Aeon and TurtleCoin are now Cryptolight-v7
-* Interplanetary Broadcast has is own Cryptolight-IPBC
+* Bittube has is own Cryptolight-Bittube
 * Stellite has is own Cryptonight-XTL
 * Alloy has is own Cryptonight-Alloy
 * MarketCash has is own Cryptonight-MKT
