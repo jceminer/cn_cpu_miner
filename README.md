@@ -30,7 +30,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC, Alloy, MKT, Arto, MSR/Fast, HVX and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT, Arto, MSR/Fast, HVX and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -148,6 +148,7 @@ To monitor the miner, read http (not https!) at localhost:MONITOR and you'll get
     "thread_1": 18.29,
     "thread_2": 21.19,
     "thread_3": 18.85,
+    "thread_all": [13.75, 18.29, 21.19, 2.71, 18.85],
     "total": 72.06,
     "max": 72.87
   },
