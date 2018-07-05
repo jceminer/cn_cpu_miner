@@ -10,9 +10,6 @@ Download JCE only from this Github page.
 
 https://github.com/jceminer/cn_gpu_miner
 
-#### Bittube-v4 is supported in the GPU version.
-Of course it will be backported to the CPU version, but you can already use the GPU version with exact same configuration, plus parameter --no-gpu to disable any GPU usage.
-
 Fork current status as of June-2018
 ```
 XTL fork supported, now enabled by default
@@ -23,7 +20,8 @@ Elya defaults to CN-v7
 Niobio and Bloc defaults to CN-Heavy
 MSR (CN-Fast) fork supported, enabled by default
 Haven fork supported, enabled by default
-TUBE v4 fork supported in GPU version (including CPU-only mode), enabled by default
+TUBE v4 fork supported starting from 0.31a, enabled by default
+Sumokoin rolled back to CN-Classic
 ```
 
 ### Is that a Virus? No!
@@ -251,6 +249,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Saronite (XRN)
 * Bloc (BLOC)
 * Wownero (WOW)
+* PrivatePay (XPP)
 * Nicehash Cryptonight
 * Minergate Cryptonight
 * MiningPoolHub Cryptonight
@@ -330,6 +329,9 @@ No, and switching the Wallet/Pool requires restarting the miner, but it can be p
 #### Q. Can I mix simple-hash and multi-hash?
 Yes, all combinations are supported, and it's a very common case when mining TurtleCoin, Aeon or IPBC.
 
+#### Q. Why doesn't the miner use all my cores?
+The limiting factor is both the cores and the cache. But while some old CPUs had a core limit (Core2-Quad had 8M or 12M of cache for only 4 cores) recent CPU are more often limited by the cache, that's why the best configuration is rarely to enable all possible cores. Unused cores should stay unused or may mine as uncached, see below.
+
 #### Q. What is "use_cache":false useful for?
 The no-cache mode means the cache is mostly bypassed, depending on your hardware. When using a lot of cache but few cores (typically when mining Cryptonight-Heavy) assigning unused physical cores to no-cache mining can give you a few extra h/s for free. Be careful, mixing cache and no-cache of *logical* CPUs of the same *physical core* causes terrible performance on AMD CPUs, while it's good on Intel ones. See below for examples.\
 :heavy_exclamation_mark: The no-cache mode is available only in the Windows version.
@@ -358,7 +360,8 @@ All current forks are supported:
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
 * SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
-* Sumokoin, Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
+* Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
+* Sumokoin is back to Cryptonight-Classic
 * Aeon and TurtleCoin are now Cryptolight-v7
 * Bittube has is own Cryptolight-Bittube
 * Stellite has is own Cryptonight-XTL
@@ -368,7 +371,7 @@ The current *Automatic* mode **behaves the old way on alt-coins**:
 * Masari has is own Cryptonight-Masari
 * Haven has is own Cryptonight-Haven
 * Pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
-* Everything else is still assumed Cryptonight
+* Everything else is still assumed Cryptonight-Classic
 
 More will be updated as more coins forks.
 
@@ -469,7 +472,7 @@ If you have a Ryzen 1700, 8 physical cores, 16 logical CPUs, 16M cache, the naiv
 ]
 ```
 
-But 8 logical CPUs would be unused. Enabling them would flood the cache and lead to worse performance. What to do is making them mine, but with no cache, direct to memory. They will mine slowly, but won't disturb other threads, and add some performance for free.
+But 4 cores (8 logical CPUs) would be unused. Enabling them would flood the cache and lead to worse performance. What to do is making them mine, but with no cache, direct to memory. They will mine slowly, but won't disturb other threads, and add some performance for free.
 
 ```
 "cpu_threads_conf" :  
