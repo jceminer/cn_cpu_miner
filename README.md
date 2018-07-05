@@ -197,7 +197,8 @@ Also, JCE never takes any fee during the first minute, so if you run it, and kil
 
 #### Q. Will it work on my computer?
 Minimum is Windows Vista 32-bits, with a SSE2 capable CPU. 64-bits is faster, prefer it.\
-For best performance, Huge Pages must be enabled, JCE will try to auto-configure them, but it may work or not depending on your Windows version and security configuration.
+For best performance, Huge Pages must be enabled, JCE will try to auto-configure them, but it may work or not depending on your Windows version and security configuration.\
+Maximum configuration is 256 threads on 256 CPUs and/or GPUs.
 
 #### Q. What currency can I mine? On which pools?
 You can mine any coin on any pool.\
