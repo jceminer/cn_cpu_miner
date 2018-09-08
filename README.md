@@ -22,7 +22,7 @@ MSR (CN-Fast) fork supported, enabled by default
 Haven fork supported, enabled by default
 TUBE v2 fork supported starting from 0.31a, enabled by default
 Sumokoin rolled back to CN-Classic
-B2N now natively supported, on old JCE version, use --variation 9
+B2N natively supported starting from 0.32m, on old JCE version, use: --any --variation 9
 MOX/Red is supported starting from 0.32m
 ```
 
@@ -190,6 +190,7 @@ No and no. It has fees, and is not open source. But the program itself is free t
 Current fees are:
 * 3.0% when using at least one mining thread with non-AES architecture, or 32-bits
 * 1.5% when using only 64-bits AES architecture
+* 0.9% on the GPUs
 
 The fees are twice higher in non-AES mode and/or 32-bits because JCE offers a huge performance gain here.
 
@@ -355,7 +356,7 @@ Thanks bro. You can, with the *--donate* parameter which raise the fees to 80%, 
 All current forks are supported:
 * N=0 *Automatic*
 * N=1 Original Cryptonight
-* N=2 Original Cryptolight (for AEON)
+* N=2 Original Cryptolight
 * N=3 Cryptonight V7 fork of April-2018
 * N=4 Cryptolight V7 fork of April-2018
 * N=5 Cryptonight-Heavy
