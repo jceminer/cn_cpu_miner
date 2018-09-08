@@ -10,18 +10,20 @@ Download JCE only from this Github page.
 
 https://github.com/jceminer/cn_gpu_miner
 
-Fork current status as of June-2018
+Fork current status as of Sept-2018
 ```
 XTL fork supported, now enabled by default
 MKT for support enabled by default
 ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
 ITA defaults to CN-Heavy starting from 0.29b
-Elya defaults to CN-v7
+Elya and Citadel defaults to CN-v7
 Niobio and Bloc defaults to CN-Heavy
 MSR (CN-Fast) fork supported, enabled by default
 Haven fork supported, enabled by default
-TUBE v4 fork supported starting from 0.31a, enabled by default
+TUBE v2 fork supported starting from 0.31a, enabled by default
 Sumokoin rolled back to CN-Classic
+B2N now natively supported, on old JCE version, use --variation 9
+MOX/Red is supported starting from 0.32m
 ```
 
 ### Is that a Virus? No!
@@ -30,7 +32,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT, Arto, MSR/Fast, HVX and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -204,59 +206,66 @@ Maximum configuration is 256 threads on 256 CPUs and/or GPUs.
 You can mine any coin on any pool.\
 If your coin is listed, all is automatic.\
 Run the miner with *--coins* parameter to get the up-to-date list. Current list is:
-* Monero (XMR/XMV)
-* Electroneum (ETN)
-* Karbowanec (KRB)
-* Bytecoin (BCN)
-* Sumokoin (SUMO)
-* Bitcoal (COAL)
-* Bitcedi (BXC)
-* Bittube (TUBE)
-* Dinastycoin (DCY)
-* Leviarcoin (XLC)
-* Fonero (FNO)
-* Turtlecoin (TRTL)
-* Graft (GRFT)
-* Dero (DERO)
-* Stellite (XTL)
-* UltraNote (XUN)
-* Intense (INTS)
-* Crepcoin (CREP)
-* Pluracoin (PLURA)
-* Haven (XHV)
-* FreelaBit (FBF)
-* BlueberriesCoin (BBC)
-* B2BCoin (B2B)
-* Bitsum (BSM)
-* SuperiorCoin (SUP)
-* EDollar (EDL)
-* Masari (MSR)
+* Aeon (AEON)
 * Alloy (XAO)
+* ArQmA (ARQ)
+* ArtoCash (RTO)
+* B2BCoin (B2B)
+* Bitcoin2network (B2N)
 * BBSCoin (BBS)
+* Bitcoal (COAL)
 * BitcoiNote (BTCN)
+* Bitsum (BSM)
+* Bloc (BLOC)
+* BitTube (TUBE)
+* BlueberriesCoin (BBC)
+* Bytecoin (BCN)
+* Citadel (CTL)
+* Crepcoin (CREP)
+* Dero (DERO)
+* Dinastycoin (DCY)
+* Electronic Dollar (EDL)
+* Electroneum (ETN)
 * Elya (ELYA)
+* Fonero (FNO)
+* FreelaBit (FBF)
+* Gadcoin (GAD)
+* Graft (GRFT)
+* Haven (XHV)
+* Intense (ITNS)
 * Iridium (IRD)
 * Italo (ITA)
+* Karbowanec (KRB)
+* Leviarcoin (XLC)
 * Lines (LNS)
+* Loki (LOK)
+* MarketCash (MKT)
+* Masari (MSR)
+* Minergate
+* MiningPoolHub
+* MiningRigRentals
+* Monero (XMR/XMV)
+* Mox (MOX)
+* Nicehash
 * Niobio (NBR)
 * Ombre (OMB)
+* Pluracoin (PLURA)
+* PrivatePay (XPP)
+* Qwertycoin (QWC)
+* Saronite (XRN)
 * Solace (SOL)
+* Stellite (XTL)
+* Sumokoin (SUMO)
+* SuperiorCoin (SUP)
+* Suprnova
 * Triton (TRIT)
 * Truckcoin (TRKC)
-* Qwertycoin (QWC)
-* Loki (LOK)
-* Gadcoin (GAD)
-* MarketCash (MKT)
-* ArtoCash (RTO)
-* Saronite (XRN)
-* Bloc (BLOC)
+* Turtlecoin (TRTL)
+* UltraNote (XUN)
+* Veronite (XVV)
 * Wownero (WOW)
-* PrivatePay (XPP)
-* Nicehash Cryptonight
-* Minergate Cryptonight
-* MiningPoolHub Cryptonight
-* MiningRigRentals Cryptonight
-* Suprnova Cryptonight
+* X-Cash (XCA)
+* zBucks (ZBK)
 
 Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
 The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
@@ -353,25 +362,27 @@ All current forks are supported:
 * N=6 Cryptolight-IPBC
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
-* N=9 Cryptonight-MKT
+* N=9 Cryptonight-MKT/B2N
 * N=10 Cryptonight-ArtoCash
 * N=11 Cryptonight-Fast (Masari)
 * N=12 Cryptonight-Haven
-* N=13 Cryptonight-Bittube v4
+* N=13 Cryptonight-Bittube v2
+* N=14 Cryptolight-Red
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
-* SuperiorCoin, BBSCoin, Electroneum and Lines are Cryptonight V7 too,
+* SuperiorCoin, BBSCoin, Citadel, Electroneum and Lines are Cryptonight V7 too,
 * Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
 * Sumokoin is back to Cryptonight-Classic
 * Aeon and TurtleCoin are now Cryptolight-v7
 * Bittube has is own Cryptolight-Bittube
 * Stellite has is own Cryptonight-XTL
 * Alloy has is own Cryptonight-Alloy
-* MarketCash has is own Cryptonight-MKT
+* MarketCash and B2N have their own Cryptonight-MKT/B2N
 * ArtoCash has is own Cryptonight-Arto
 * Masari has is own Cryptonight-Masari
 * Haven has is own Cryptonight-Haven
+* MOX has is own Cryptolight-Red
 * Pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
 * Everything else is still assumed Cryptonight-Classic
 
@@ -451,7 +462,7 @@ Autoconfig may enable multi-hash in some cases, but it's mostly used with manual
      { "cpu_architecture" : "auto", "affine_to_cpu" :11, "use_cache" : true, "multi_hash":1 },
 ]
 ```
-This is the best configuration to mine Cryptolight, TurtleCoin or IPBC on a Ryzen 1600/1600X (12 logical CPUs, 16M cache).\
+This is the best configuration to mine Cryptolight, TurtleCoin, Red or IPBC on a Ryzen 1600/1600X (12 logical CPUs, 16M cache).\
 By using simple hash, the 12 core would have used 12M cache, because that algo requires 1M per thread.
 The unused 4M can be involved into mining by turning some thread to double-hash (this is: "multi_hash":2). Curiously, Using 4 double-threads to use the whole 16M cache offers less performance, the best is 10 simple, and 2 double. It may worth to test for your specific CPU, all CPU tend to have a different optimal configuration.
 
