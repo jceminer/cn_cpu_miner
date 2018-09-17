@@ -200,8 +200,9 @@ Also, JCE never takes any fee during the first minute, so if you run it, and kil
 
 #### Q. Will it work on my computer?
 Minimum is Windows Vista 32-bits, with a SSE2 capable CPU. 64-bits is faster, prefer it.\
+Vista64 is no longer supported, the minimum Win64 is now Seven-64.\
 For best performance, Huge Pages must be enabled, JCE will try to auto-configure them, but it may work or not depending on your Windows version and security configuration.\
-Maximum configuration is 256 threads on 256 CPUs and/or GPUs.
+Maximum configuration is 256 threads on 256 (Win64) or 64 (Win32) CPUs and/or GPUs.
 
 #### Q. What currency can I mine? On which pools?
 You can mine any coin on any pool.\
@@ -221,10 +222,14 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * BitTube (TUBE)
 * BlueberriesCoin (BBC)
 * Bytecoin (BCN)
+* Catalyst (XAT)
 * Citadel (CTL)
+* Citicash (CCH)
+* Constella (XCC)
 * Crepcoin (CREP)
 * Dero (DERO)
 * Dinastycoin (DCY)
+* DragonGlass (DRGL)
 * Electronic Dollar (EDL)
 * Electroneum (ETN)
 * Elya (ELYA)
@@ -233,13 +238,15 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Gadcoin (GAD)
 * Graft (GRFT)
 * Haven (XHV)
-* Intense (ITNS)
 * Iridium (IRD)
 * Italo (ITA)
+* KashKoin (KHK)
 * Karbowanec (KRB)
+* Lethean (LTHN)
 * Leviarcoin (XLC)
 * Lines (LNS)
 * Loki (LOK)
+* Lumeneo (LMO)
 * MarketCash (MKT)
 * Masari (MSR)
 * Minergate
@@ -250,9 +257,12 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Nicehash
 * Niobio (NBR)
 * Ombre (OMB)
+* ParsiCoin (PARS)
+* Plenteum (PLE)
 * Pluracoin (PLURA)
 * PrivatePay (XPP)
 * Qwertycoin (QWC)
+* Remix (RMX)
 * Saronite (XRN)
 * Solace (SOL)
 * Stellite (XTL)
