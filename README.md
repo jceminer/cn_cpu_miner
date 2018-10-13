@@ -10,8 +10,9 @@ Download JCE only from this Github page.
 
 https://github.com/jceminer/cn_gpu_miner
 
-Fork current status as of Sept-2018
+Fork current status as of October-2018
 ```
+V8 fork supported starting from 0.33a, enabled by default on Monero and Wownero
 XTL fork supported, now enabled by default
 MKT for support enabled by default
 ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
