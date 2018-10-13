@@ -32,7 +32,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -238,6 +238,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Gadcoin (GAD)
 * Graft (GRFT)
 * Haven (XHV)
+* HospitalCoin (HOSP)
 * Iridium (IRD)
 * Italo (ITA)
 * KashKoin (KHK)
@@ -261,6 +262,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Plenteum (PLE)
 * Pluracoin (PLURA)
 * PrivatePay (XPP)
+* PyrexCoin (PYX)
 * Qwertycoin (QWC)
 * Remix (RMX)
 * Saronite (XRN)
@@ -269,6 +271,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Sumokoin (SUMO)
 * SuperiorCoin (SUP)
 * Suprnova
+* Tritanium (TTNZ)
 * Triton (TRIT)
 * Truckcoin (TRKC)
 * Turtlecoin (TRTL)
@@ -277,6 +280,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Wownero (WOW)
 * X-Cash (XCA)
 * zBucks (ZBK)
+* Zelerius (ZLS)
 
 Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
 The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
@@ -379,9 +383,11 @@ All current forks are supported:
 * N=12 Cryptonight-Haven
 * N=13 Cryptonight-Bittube v2
 * N=14 Cryptolight-Red
+* N=15 Cryptonight V8 fork of Oct-2018
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero, Monero-V, Wownero, Graft, Elya and Intense are now Cryptonight V7,
+* Monero, Wownero are now Cryptonight V8
+* Graft, Elya and Intense are Cryptonight V7,
 * SuperiorCoin, BBSCoin, Citadel, Electroneum and Lines are Cryptonight V7 too,
 * Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
 * Sumokoin is back to Cryptonight-Classic
