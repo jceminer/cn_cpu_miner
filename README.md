@@ -6,6 +6,10 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
+:heavy_exclamation_mark: Update to version 0.33 or later before the V8 fork of 18-October-2018\
+To mine Monero before the fork, add parameter --variation 3, after, use --variation 15\
+Please update **even if you don't mine Monero** since other coins and marketplaces will probably fork too.
+
 #### Take a look at the GPU prototype!
 
 https://github.com/jceminer/cn_gpu_miner
