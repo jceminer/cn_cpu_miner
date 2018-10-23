@@ -17,6 +17,7 @@ https://github.com/jceminer/cn_gpu_miner
 Fork current status as of October-2018
 ```
 V8 fork supported starting from 0.33a, enabled by default on Monero and Wownero
+MoneroOcean pool uses the Pool-managed Autoswitch by default
 XTL fork supported, now enabled by default
 MKT for support enabled by default
 ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
@@ -49,6 +50,7 @@ The *--variation* parameter let you choose the fork. More details below.
 * [Advanced topics](#advanced-topics)
 * [Cryptonight Forks](#cryptonight-forks)
 * [Configuration](#configuration)
+* [Pool-managed Autoswitch](#pool-managed-autoswitch)
 * [Large Pages](#large-pages)
 * [Privacy and Security](#privacy-and-security)
 
@@ -259,6 +261,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * MiningPoolHub
 * MiningRigRentals
 * Monero (XMR/XMV)
+* MoneroOcean
 * Mox (MOX)
 * Nicehash
 * Niobio (NBR)
@@ -389,6 +392,7 @@ All current forks are supported:
 * N=13 Cryptonight-Bittube v2
 * N=14 Cryptolight-Red
 * N=15 Cryptonight V8 fork of Oct-2018
+* N=16 Pool-managed Autoswitch
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Wownero are now Cryptonight V8
@@ -405,7 +409,8 @@ The current *Automatic* mode **behaves the old way on alt-coins**:
 * Masari has is own Cryptonight-Masari
 * Haven has is own Cryptonight-Haven
 * MOX has is own Cryptolight-Red
-* Pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
+* MoneroOcean uses the Pool-managed Autoswitch
+* Other pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
 * Everything else is still assumed Cryptonight-Classic
 
 More will be updated as more coins forks.
@@ -535,6 +540,70 @@ But 4 cores (8 logical CPUs) would be unused. Enabling them would flood the cach
 ```
 Note how we added no-cache threads on free *physical* cores, but not on otherwise unused free *logical* CPUs. That's for AMD. On Intel, you often can add no-cache threads on all free CPUs, logical or not, to get extra performance.
 
+## Pool-managed Autoswitch
+
+This is a new feature introduced in JCE 0.33c\
+This mode, activated with **--variation 16**, allows your pool to change the mining algorithm on the fly to always target the most profitable coin. The best example is MoneroOcean, and all tests have been done on this pool. Also the Autoswitch is enabled by default when mining there.
+
+If you use the --auto configuration, that's it, everything is automatic, and your pool will be allowed to mine all existing algorithms.
+Otherwise, the manual configuration is more complicated than for the legacy Single-algo mode, but allows control on what the pool can mine.
+
+The algorithms are sorted in three classes:
+* The Cryptolight class (Turtle, Mox, Aeon...)
+* The Cryptonight class (Monero, Stellite, Masari...)
+* The CN-Heavy class (Loki, Tube, Haven...)
+
+Three new configuration arrays are introduced, one for each class.
+Not the three are mandatory, only one is, the missing other will
+make their respective class never mined. For example, if you do NOT
+setup the array for CN-Heavy, so no CN-Heavy algo will be mined.
+JCE does not make the Cryptonight class mandatory, but most Algo-switching
+pool do, and MoneroOcean does.
+
+* The CPU array for Cryptolight class is: **"cryptolight_cpu_threads_conf"**
+* The CPU array for Cryptonight class is: **"cryptonight_cpu_threads_conf"**
+* The CPU array for CN-Heavy class is: **"cn_heavy_cpu_threads_conf"**
+
+The legacy "cpu_threads_conf" is used **when and only when** normal Single-Algo mode is used.\
+The new three are used **when and only when** Autoswitch mode is used.
+
+It depends on your processor, but the Cryptolight tends to have twice more
+threads that Cryptonight, and CN-Heavy twice less.\
+The content of the arrays is the exact same as in the legacy "cpu_threads_conf".\
+All four arrays (the legacy "cpu_threads_conf" and the new three) are independent and can be stored in the same config file,
+even if I advise to use separate files for Single-algo and Pool-selected Algo
+mining, for clarity.
+
+Note: if you use dual-thread mining, the index in "dual_mine_with" in array-local.
+
+Below is an example for a fictional 4-Core 4M-Cache CPU:
+
+ ```
+/* This is the configuration when Cryptolight class algo is mined */
+"cryptolight_cpu_threads_conf" : 
+[ 
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":1 },
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 1, "use_cache" : true, "multi_hash":1 },
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 2, "use_cache" : true, "multi_hash":1 },
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 3, "use_cache" : true, "multi_hash":1 },
+],
+ 
+/* This is the configuration when Cryptonight class algo is mined */
+"cryptonight_cpu_threads_conf" : 
+[ 
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":1 },
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 2, "use_cache" : true, "multi_hash":1 },
+],
+
+/* This is the configuration when CN-Heavy class algo is mined */
+"cn_heavy_cpu_threads_conf" : 
+[ 
+      { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":1 },
+],
+```
+
+At login, and each time the pool changes the algorithm, the new algorithm is logged.\
+Each of the three algorithm have then their dedicated threads, both with auto or manual configuration, and the disabled threads are ignored when measuring the hashrate. When the algorithm class changes (when switching from Haven to Graft for example) the respective dedicated threads stop and start.
 
 ## Large Pages
 
