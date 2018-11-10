@@ -198,7 +198,8 @@ No and no. It has fees, and is not open source. But the program itself is free t
 Current fees are:
 * 3.0% when using at least one mining thread with non-AES architecture, or 32-bits
 * 1.5% when using only 64-bits AES architecture
-* 0.9% on the GPUs
+* 2.1% on the GPUs when mining CN-Heavy or related forks
+* 0.9% on the GPUs otherwise
 
 The fees are twice higher in non-AES mode and/or 32-bits because JCE offers a huge performance gain here.
 
@@ -394,6 +395,7 @@ All current forks are supported:
 * N=14 Cryptolight-Red
 * N=15 Cryptonight V8 fork of Oct-2018
 * N=16 Pool-managed Autoswitch
+* N=17 Cryptolight-Dark
 
 The current *Automatic* mode **behaves the old way on alt-coins**:
 * Monero, Wownero are now Cryptonight V8
