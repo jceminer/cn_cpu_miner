@@ -17,6 +17,7 @@ https://github.com/jceminer/cn_gpu_miner
 Fork current status as of October-2018
 ```
 V8 fork supported starting from 0.33a, enabled by default on Monero and Wownero
+Cryptolight-Dark (CryoNote) supported strating from 0.33f, use: --variation 17
 MoneroOcean pool uses the Pool-managed Autoswitch by default
 XTL fork supported, now enabled by default
 MKT for support enabled by default
@@ -38,7 +39,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX, Dark and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
