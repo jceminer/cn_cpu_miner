@@ -14,19 +14,14 @@ Please update **even if you don't mine Monero** since other coins and marketplac
 
 https://github.com/jceminer/cn_gpu_miner
 
-Fork current status as of October-2018
+Fork current status as of November-2018
 ```
-V8 fork supported starting from 0.33a, enabled by default on Monero and Wownero
-Cryptolight-Dark (CryoNote) supported strating from 0.33f, use: --variation 17
+V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
+Cryptonight-Fest is supported, use the same algo as for Arto: --variation 10
+Cryptonight-FreeHaven supported starting from 0.33g, use: --variation 18
+Cryptolight-Dark (CryoNote) supported starting from 0.33f, use: --variation 17
 MoneroOcean pool uses the Pool-managed Autoswitch by default
-XTL fork supported, now enabled by default
-MKT for support enabled by default
-ETN forked to a slightly modified CN-v7, supported and enabled by default on 0.29b and later
-ITA defaults to CN-Heavy starting from 0.29b
-Elya and Citadel defaults to CN-v7
-Niobio and Bloc defaults to CN-Heavy
-MSR (CN-Fast) fork supported, enabled by default
-Haven fork supported, enabled by default
+ITA defaults to CN-Haven starting from 0.33f
 TUBE v2 fork supported starting from 0.31a, enabled by default
 Sumokoin rolled back to CN-Classic
 B2N natively supported starting from 0.32m, on old JCE version, use: --any --variation 9
@@ -39,7 +34,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto, MSR/Fast, Red, HVX, Dark and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto/Fest, MSR/Fast, Red, XHV, FreeHaven, Dark and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -61,57 +56,8 @@ In short, JCE is:
 * Crazy fast on non-AES 64-bits, usually 35-40% faster than other miners
 * Compared to other 32-bits miners, still faster on non-AES 32-bits, sometimes beating even the other miners 64-bits versions
 * And still comparatively faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
-* Barely faster than the other best on AES 64-bits, beating them by ~1%, +2.8% on V7 fork, +4% on Cryptonight-Heavy
+* Slightly faster than the other best on AES 64-bits, beating them by ~1% on CN-classic, +2.8% on V7 fork, +4% on Cryptonight-Heavy
 * Also a lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
-
-Here's a benchmark against three other common miners.\
-**The test is fair**: run on the exact same Win10 Pro computer, all Huge Pages enabled, no background task, best configuration.
-* XMRStak means: the released Unified binary from github (not recompiled myself)
-* XMRig means: the respective best released binary *gcc* (32-bits) and *msvc* (64-bits) from github (not recompiled myself)
-* Claymore means: best Claymore CPU (3.4 for 32-bits, 3.9 for 64-bits)
-* When not supported, score is zero, if not tested yet, score is *?*
-* Fees are included in the score
-
-
-##### Core2 Quad 2.666 GHz 12M, 4 threads, 64-bits, Cryptonight
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-116 | 80 | 85 | 57
-
-##### Core2 Quad 2.666 GHz 12M, 4 threads, 32-bits, Cryptonight
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-93 | 0 | 68 | 50
-
-##### Ryzen 1600, 8 threads, 64-bits, Cryptonight
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-506 | 502 | 502 | 443
-
-##### Ryzen 1600, 8 threads, 32-bits, Cryptonight
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-434 | 0 | 327 | 275
-
-##### Ryzen 1600, 8 threads, 64-bits, Cryptonight V7
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-503 | 492 | 491 | ?
-
-##### Ryzen 1600, 8 threads, 32-bits, Cryptonight V7
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-424 | 0 | 320 | ?
-
-##### Ryzen 1600, 4 threads, 64-bits, Cryptonight Heavy
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-252 | 169 | 250 | 0
-
-##### Ryzen 1600, 4 threads, 32-bits, Cryptonight Heavy
-JCE | XMRStak | XMRig | Claymore
------------- | ------------- | - | -
-191 | 0 | 174 | 0
 
 ## Getting started
 
@@ -227,15 +173,18 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Bitcoal (COAL)
 * BitcoiNote (BTCN)
 * Bitsum (BSM)
+* BlackRose (BLR)
 * Bloc (BLOC)
 * BitTube (TUBE)
 * BlueberriesCoin (BBC)
 * Bytecoin (BCN)
+* Caliber (CAL)
 * Catalyst (XAT)
 * Citadel (CTL)
 * Citicash (CCH)
 * Constella (XCC)
 * Crepcoin (CREP)
+* CryoNote (XCN)
 * Dero (DERO)
 * Dinastycoin (DCY)
 * DragonGlass (DRGL)
@@ -243,7 +192,9 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Electroneum (ETN)
 * Elya (ELYA)
 * Fonero (FNO)
+* FreeHaven (XFH)
 * FreelaBit (FBF)
+* FuryCoin (FURY)
 * Gadcoin (GAD)
 * Graft (GRFT)
 * Haven (XHV)
@@ -281,13 +232,16 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Sumokoin (SUMO)
 * SuperiorCoin (SUP)
 * Suprnova
+* TaxfreeCoin (TXC)
 * Tritanium (TTNZ)
 * Triton (TRIT)
 * Truckcoin (TRKC)
 * Turtlecoin (TRTL)
 * UltraNote (XUN)
 * Veronite (XVV)
+* VideoGamesCoin (VGC)
 * Wownero (WOW)
+* Xaria (XARI)
 * X-Cash (XCA)
 * zBucks (ZBK)
 * Zelerius (ZLS)
@@ -388,7 +342,7 @@ All current forks are supported:
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT/B2N
-* N=10 Cryptonight-ArtoCash
+* N=10 Cryptonight-ArtoCash/Fest
 * N=11 Cryptonight-Fast (Masari)
 * N=12 Cryptonight-Haven
 * N=13 Cryptonight-Bittube v2
@@ -396,27 +350,7 @@ All current forks are supported:
 * N=15 Cryptonight V8 fork of Oct-2018
 * N=16 Pool-managed Autoswitch
 * N=17 Cryptolight-Dark
-
-The current *Automatic* mode **behaves the old way on alt-coins**:
-* Monero, Wownero are now Cryptonight V8
-* Graft, Elya and Intense are Cryptonight V7,
-* SuperiorCoin, BBSCoin, Citadel, Electroneum and Lines are Cryptonight V7 too,
-* Loki, Ombre, Italo, Bloc, Niobio, Saronite are now Cryptonight-Heavy,
-* Sumokoin is back to Cryptonight-Classic
-* Aeon and TurtleCoin are now Cryptolight-v7
-* Bittube has is own Cryptolight-Bittube
-* Stellite has is own Cryptonight-XTL
-* Alloy has is own Cryptonight-Alloy
-* MarketCash and B2N have their own Cryptonight-MKT/B2N
-* ArtoCash has is own Cryptonight-Arto
-* Masari has is own Cryptonight-Masari
-* Haven has is own Cryptonight-Haven
-* MOX has is own Cryptolight-Red
-* MoneroOcean uses the Pool-managed Autoswitch
-* Other pools (Nicehash, MiningRigRentals...) default to Cryptonight V7
-* Everything else is still assumed Cryptonight-Classic
-
-More will be updated as more coins forks.
+* N=18 Cryptonight-FreeHaven
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
@@ -579,6 +513,10 @@ mining, for clarity.
 
 Note: if you use dual-thread mining, the index in "dual_mine_with" in array-local.
 
+### Performance hint
+
+MoneroOcean, and probably some other pools, can use a hint about the performances on each algo to select the best algo based on the coins prices **and** the efficiency of your computer. Configure it as a separate node **algo_perf** in the config file, see the example below. If missing or not mining with the Pool-managed Autoswitch, it is simply ignored.
+
 Below is an example for a fictional 4-Core 4M-Cache CPU:
 
  ```
@@ -603,6 +541,19 @@ Below is an example for a fictional 4-Core 4M-Cache CPU:
 [ 
       { "cpu_architecture" : "auto", "affine_to_cpu" : 0, "use_cache" : true, "multi_hash":1 },
 ],
+
+/* You can also add a performance hint for each algo code (optional) */
+"algo_perf":
+{
+     "cn/xtl": 205.17,
+     "cn/2": 160,
+     "cn/msr": 300.15,
+     "cn-lite": 510.73,
+     "cn-lite/1": 499.12,
+     "cn-heavy": 90.44,
+     "cn-heavy/tube": 88.53,
+     "cn-heavy/xhv": 89.31
+},
 ```
 
 At login, and each time the pool changes the algorithm, the new algorithm is logged.\
