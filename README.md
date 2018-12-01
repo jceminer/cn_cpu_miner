@@ -144,8 +144,7 @@ No and no. It has fees, and is not open source. But the program itself is free t
 Current fees are:
 * 3.0% when using at least one mining thread with non-AES architecture, or 32-bits
 * 1.5% when using only 64-bits AES architecture
-* 2.1% on the GPUs when mining CN-Heavy or related forks
-* 0.9% on the GPUs otherwise
+* 0.9% on the GPUs
 
 The fees are twice higher in non-AES mode and/or 32-bits because JCE offers a huge performance gain here.
 
