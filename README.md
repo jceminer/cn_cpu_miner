@@ -55,6 +55,7 @@ In short, JCE is:
 * Compared to other 32-bits miners, still faster on non-AES 32-bits, sometimes beating even the other miners 64-bits versions
 * And still comparatively faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
 * Slightly faster than the other best on AES 64-bits, beating them by ~1% on CN-classic, +2.8% on v7 fork, +2% on v8, +4% on Cryptonight-Heavy
+* A lot faster than any other miner when mining BitTube v2, on any processor, with ~30% extra speed.
 * Also a lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
 
 ## Getting started
