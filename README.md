@@ -6,9 +6,7 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
-## Update to version 0.33 or later before the V8 fork of 18-October-2018
-:heavy_exclamation_mark: To mine Monero before the fork, add parameter --variation 3, after, use --variation 15\
-Please update **even if you don't mine Monero** since other coins and marketplaces will probably fork too.
+### Version 0.33i and later provide a big performance boost on CN-v8, for all CPUs, updating is highly recommended.
 
 #### Take a look at the GPU version!
 
@@ -56,7 +54,7 @@ In short, JCE is:
 * Crazy fast on non-AES 64-bits, usually 35-40% faster than other miners
 * Compared to other 32-bits miners, still faster on non-AES 32-bits, sometimes beating even the other miners 64-bits versions
 * And still comparatively faster on non-AES 32-bits Cryptonight-Heavy, with usually +50% speed.
-* Slightly faster than the other best on AES 64-bits, beating them by ~1% on CN-classic, +2.8% on V7 fork, +4% on Cryptonight-Heavy
+* Slightly faster than the other best on AES 64-bits, beating them by ~1% on CN-classic, +2.8% on v7 fork, +2% on v8, +4% on Cryptonight-Heavy
 * Also a lot faster on AES 32-bits, but it's a rare case (mostly seen on Intel Atom tablets)
 
 ## Getting started
@@ -159,7 +157,7 @@ For best performance, Huge Pages must be enabled, JCE will try to auto-configure
 Maximum configuration is 256 threads on 256 (Win64) or 64 (Win32) CPUs and/or GPUs.
 
 #### Q. What currency can I mine? On which pools?
-You can mine any coin on any pool.\
+You can mine **any coin on any pool**.\
 If your coin is listed, all is automatic.\
 Run the miner with *--coins* parameter to get the up-to-date list. Current list is:
 * Aeon (AEON)
@@ -245,8 +243,8 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * zBucks (ZBK)
 * Zelerius (ZLS)
 
-Otherwise, if your coin is not listed, or your wallet not recognized, use the __--any__ parameter, plus the __--variation N__ parameter, with N the fork number, see list below.
-The fork detection is automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
+Otherwise, if your coin is not listed, or your wallet not recognized, use the __--variation N__ parameter, with N the fork number, see list below.
+The fork detection is mostly automatic on known coins, but manual on unknown coins. The coin list is periodically updated.
 
 #### Q. Is Nicehash supported?
 Yes, see list above. The Nicehash-specific Nonce is then automatically enabled.
@@ -337,7 +335,7 @@ All current forks are supported:
 * N=3 Cryptonight V7 fork of April-2018
 * N=4 Cryptolight V7 fork of April-2018
 * N=5 Cryptonight-Heavy
-* N=6 Cryptolight-IPBC
+* N=6 Cryptolight-IPBC (obsolete)
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT/B2N
