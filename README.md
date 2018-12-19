@@ -12,8 +12,9 @@ Download JCE only from this Github page.
 
 https://github.com/jceminer/cn_gpu_miner
 
-Fork current status as of November-2018
+Fork current status as of December-2018
 ```
+UPX fork supported starting from 0.33j
 V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
 Cryptonight-Fest is supported, use the same algo as for Arto: --variation 10
 Cryptonight-FreeHaven supported starting from 0.33g, use: --variation 18
@@ -236,6 +237,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Truckcoin (TRKC)
 * Turtlecoin (TRTL)
 * UltraNote (XUN)
+* Uplexa (UPX)
 * Veronite (XVV)
 * VideoGamesCoin (VGC)
 * Wownero (WOW)
@@ -349,6 +351,7 @@ All current forks are supported:
 * N=16 Pool-managed Autoswitch
 * N=17 Cryptolight-Dark
 * N=18 Cryptonight-FreeHaven
+* N=19 Cryptolight-Uplexa
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
