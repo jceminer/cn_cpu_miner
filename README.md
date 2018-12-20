@@ -6,7 +6,7 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
-### Version 0.33i and later provide a big performance boost on CN-v8, for all CPUs, updating is highly recommended.
+### Version 0.33j and later provide a big performance boost on CN-v8, for modern CPUs, updating is highly recommended.
 
 #### Take a look at the GPU version!
 
@@ -231,6 +231,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Sumokoin (SUMO)
 * SuperiorCoin (SUP)
 * Suprnova
+* Swap (SWAP)
 * TaxfreeCoin (TXC)
 * Tritanium (TTNZ)
 * Triton (TRIT)
@@ -350,7 +351,7 @@ All current forks are supported:
 * N=15 Cryptonight V8 fork of Oct-2018
 * N=16 Pool-managed Autoswitch
 * N=17 Cryptolight-Dark
-* N=18 Cryptonight-FreeHaven
+* N=18 Cryptonight-FreeHaven/Swap
 * N=19 Cryptolight-Uplexa
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
