@@ -45,6 +45,7 @@ The *--variation* parameter let you choose the fork. More details below.
 * [Advanced topics](#advanced-topics)
 * [Cryptonight Forks](#cryptonight-forks)
 * [Configuration](#configuration)
+* [Remote Managment](#remote-managment)
 * [Pool-managed Autoswitch](#pool-managed-autoswitch)
 * [Large Pages](#large-pages)
 * [Privacy and Security](#privacy-and-security)
@@ -352,7 +353,7 @@ All current forks are supported:
 * N=16 Pool-managed Autoswitch
 * N=17 Cryptolight-Dark
 * N=18 Cryptonight-FreeHaven/Swap
-* N=19 Cryptolight-Uplexa
+* N=19 Cryptolight-uPlexa
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
@@ -371,6 +372,21 @@ Important extra parameters are:
 * *--variation* to use one of the new Cryptonight forks
 
 Type --help to get the complete list.
+
+### Parameterless file-based configuration
+
+This special mode is helpful for integration of the miner into external managment tools, to run it as a Windows Service, or for the remote managment.\
+The principle is:
+* Write all parameters you need to pass into a text file named *serviceconfig.txt*, in the same order, with quotes, separated by commas.
+* Put that file in the current directory of the JCE executable.
+* Run the executable with no parameters.
+
+Example of *serviceconfig.txt* content:
+```
+"--auto", "--low", "-t", "4", "--keepalive", "-p", "x", ....
+```
+Note that each param must be separated, so you write "-t", "4" and not "-t 4"\
+The JCE package comes with a full example.
 
 ### Super Easy CPU configuration
 
@@ -478,6 +494,32 @@ But 4 cores (8 logical CPUs) would be unused. Enabling them would flood the cach
 ]
 ```
 Note how we added no-cache threads on free *physical* cores, but not on otherwise unused free *logical* CPUs. That's for AMD. On Intel, you often can add no-cache threads on all free CPUs, logical or not, to get extra performance.
+
+## Remote Managment
+
+Starting from JCE 0.33m, a very simplified remote managment through HTTP is available.\
+To enable it, use the HTTP server parameter **--mport P** where P is the port number. The server is disabled by default.
+
+Assuming your rig address is *righost* and the port is 1234, simply *navigate* (using any web brower or a dedicated tool) to those pseudo-pages:
+
+http://righost:1234/ to get the miner status in JSON format.\
+http://righost:1234/pause to pause the miner.\
+http://righost:1234/resume to resume the miner.\
+http://righost:1234/pause-cpu to pause all CPUs.\
+http://righost:1234/pause-gpu to pause all GPUs.\
+http://righost:1234/pause-gpu-N to pause GPU N (N decimal or hexa).\
+http://righost:1234/stop to kill the miner.\
+http://righost:1234/restart to restart the miner.
+
+All commands received by the miner are logged, even if they don't make sense, like resuming an already running miner or pausing a GPU you don't have or don't use. In such case they do nothing else than being logged.
+
+You can stop or restart the miner even when it's in paused state.\
+Internally, a page is considered *navigated* when the HTTP server receives a GET request. Doing such with a web browser is both trivial and non-intuitive, this feature is designed to be used through an external tool or html shortcuts.
+
+The *restart* allows you to do an indirect coin/pool switch: by configuring the miner only with external files (typically with the *serviceconfig.txt* parameter file) you can:
+* Edit the config files
+* Send the restart command
+* Let the miner restart and connect to the potentially new pool, to mine a potentially new coin etc.
 
 ## Pool-managed Autoswitch
 
