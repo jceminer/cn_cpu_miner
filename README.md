@@ -14,6 +14,7 @@ https://github.com/jceminer/cn_gpu_miner
 
 Fork current status as of December-2018
 ```
+Turtle v2 fork supported starting from 0.33m
 UPX fork supported starting from 0.33j
 V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
 Cryptonight-Fest is supported, use the same algo as for Arto: --variation 10
@@ -186,6 +187,7 @@ Run the miner with *--coins* parameter to get the up-to-date list. Current list 
 * Crepcoin (CREP)
 * CryoNote (XCN)
 * Dero (DERO)
+* DeroGold (DEGO)
 * Dinastycoin (DCY)
 * DragonGlass (DRGL)
 * Electronic Dollar (EDL)
@@ -352,8 +354,9 @@ All current forks are supported:
 * N=15 Cryptonight V8 fork of Oct-2018
 * N=16 Pool-managed Autoswitch
 * N=17 Cryptolight-Dark
-* N=18 Cryptonight-FreeHaven/Swap
+* N=18 Cryptonight-FreeHaven/Swap/Ultrafast
 * N=19 Cryptolight-uPlexa
+* N=20 Cryptolight-Turtle v2
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
