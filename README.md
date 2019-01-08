@@ -14,8 +14,9 @@ https://github.com/jceminer/cn_gpu_miner
 
 Fork current status as of December-2018
 ```
-Turtle v2 fork supported starting from 0.33m
-UPX fork supported starting from 0.33j
+Stellite v8 fork supported starting from 0.33n with --variation 21
+Turtle v2 fork supported starting from 0.33m with --variation 20
+uPlexa fork supported starting from 0.33j
 V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
 Cryptonight-Fest is supported, use the same algo as for Arto: --variation 10
 Cryptonight-FreeHaven supported starting from 0.33g, use: --variation 18
@@ -357,6 +358,7 @@ All current forks are supported:
 * N=18 Cryptonight-FreeHaven/Swap/Ultrafast
 * N=19 Cryptolight-uPlexa
 * N=20 Cryptolight-Turtle v2
+* N=21 Cryptonight-Stellite v8
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
