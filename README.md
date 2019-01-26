@@ -14,7 +14,8 @@ https://github.com/jceminer/cn_gpu_miner
 
 Fork current status as of December-2018
 ```
-Stellite v8 fork supported starting from 0.33n with --variation 21
+Masari defaults to v8 starting from 0.33p, manually supported by 0.33n with --variation 21
+Stellite v8 fork supported starting from 0.33n with --variation 21, automatic starting from 0.33p
 Turtle v2 fork supported starting from 0.33m with --variation 20
 uPlexa fork supported starting from 0.33j
 V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
@@ -358,7 +359,7 @@ All current forks are supported:
 * N=18 Cryptonight-FreeHaven/Swap/Ultrafast
 * N=19 Cryptolight-uPlexa
 * N=20 Cryptolight-Turtle v2
-* N=21 Cryptonight-Stellite v8
+* N=21 Cryptonight-Stellite/Masari v8
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
