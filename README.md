@@ -6,17 +6,19 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
-### Version 0.33j and later provide a big performance boost on CN-v8, for modern CPUs, updating is highly recommended.
+### Version 0.33j and later provide a big performance boost on CN-v8 and related (Masari v8, Stellite v8...), for modern CPUs, updating is highly recommended.
+### TurtleCoin has just forked, an upgrade to 0.33q or later is recommended.
 
 #### Take a look at the GPU version!
 
 https://github.com/jceminer/cn_gpu_miner
 
-Fork current status as of December-2018
+Fork current status as of January-2019
 ```
+Waltz/Graft fork available starting from 0.33q with --variation 22
 Masari defaults to v8 starting from 0.33p, manually supported by 0.33n with --variation 21
 Stellite v8 fork supported starting from 0.33n with --variation 21, automatic starting from 0.33p
-Turtle v2 fork supported starting from 0.33m with --variation 20
+Turtle v2 fork supported starting from 0.33m with --variation 20, enabled by default starting from 0.33q
 uPlexa fork supported starting from 0.33j
 V8 fork supported starting from 0.33a, enabled by default on Monero, Wownero and Graft
 Cryptonight-Fest is supported, use the same algo as for Arto: --variation 10
@@ -36,7 +38,7 @@ Like all miners, JCE gets detected as a virus/trojan by most Antiviruses, includ
 ### Is it just yet-another fork of a common miner? No!
 You're not losing your time testing a made-up rip of a common miner, JCE is brand new, using 100% new code.
 
-### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto/Fest, MSR/Fast, Red, XHV, FreeHaven, Dark and XTL forks supported? Yes!
+### Are the new Monero-V7, Cryptolight-V7, V8, Cryptonight-Heavy, IPBC/BitTube, Alloy, MKT/B2N, Arto/Fest, MSR/Fast, Red, XHV, FreeHaven, Waltz, Dark and XTL forks supported? Yes!
 The *--variation* parameter let you choose the fork. More details below.
 
 # Index
@@ -360,6 +362,7 @@ All current forks are supported:
 * N=19 Cryptolight-uPlexa
 * N=20 Cryptolight-Turtle v2
 * N=21 Cryptonight-Stellite/Masari v8
+* N=22 Cryptonight-Waltz/Graft
 
 To force one of those forks, set the *--variation N* parameter, with N as stated above.
 
