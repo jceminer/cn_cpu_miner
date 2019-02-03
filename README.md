@@ -8,13 +8,14 @@ Download JCE only from this Github page.
 
 ### Version 0.33j and later provide a big performance boost on CN-v8 and related (Masari v8, Stellite v8...), for modern CPUs, updating is highly recommended.
 ### TurtleCoin has just forked, an upgrade to 0.33q or later is recommended.
-
+### HospitalCoin is about to fork, to mine after the fork use --variation 10
 #### Take a look at the GPU version!
 
 https://github.com/jceminer/cn_gpu_miner
 
 Fork current status as of January-2019
 ```
+Hospital fork supported by adding --variation 10 after the fork
 Waltz/Graft fork available starting from 0.33q with --variation 22
 Masari defaults to v8 starting from 0.33p, manually supported by 0.33n with --variation 21
 Stellite v8 fork supported starting from 0.33n with --variation 21, automatic starting from 0.33p
@@ -350,7 +351,7 @@ All current forks are supported:
 * N=7 Cryptonight-XTL
 * N=8 Cryptonight-Alloy
 * N=9 Cryptonight-MKT/B2N
-* N=10 Cryptonight-ArtoCash/Fest
+* N=10 Cryptonight-ArtoCash/Fest/Hosp
 * N=11 Cryptonight-Fast (Masari)
 * N=12 Cryptonight-Haven
 * N=13 Cryptonight-Bittube v2
