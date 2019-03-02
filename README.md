@@ -6,6 +6,9 @@ BitcoinTalk Topic: https://bitcointalk.org/index.php?topic=3281187.0
 :heavy_exclamation_mark: Security Alert! Some hackers pack a Trojan in a fake JCE release, complete with the doc. :heavy_exclamation_mark: That's usually a small .rar when official JCE are big .zip\
 Download JCE only from this Github page.
 
+### End of development
+Due to lack of dev time to provide legit implementations of the new forks (read: not just a rip of the reference code), I had to end the dev. The forks listed below are the last to be supported and notably **Monero4 isn't and won't be supported**. The miner itself can still be used, with good performance, on the supported forks, including BitTube, Stellite v8 and Turtle v2.
+
 ### Version 0.33j and later provide a big performance boost on CN-v8 and related (Masari v8, Stellite v8...), for modern CPUs, updating is highly recommended.
 ### TurtleCoin has just forked, an upgrade to 0.33q or later is recommended.
 ### HospitalCoin is about to fork, to mine after the fork use --variation 10
